@@ -1,0 +1,68 @@
+
+const con = require("../Databases/config");
+const common = require("../controllers/common/function");
+
+exports.index = (req, res) => {
+    res.render('pages/index');
+}
+
+exports.registation = (req,res) =>{
+    res.render('pages/registationform');
+}
+
+exports.login = (req,res) =>{
+    res.render('pages/login');
+}
+
+exports.forgotpassword = (req,res) =>{
+    res.render('pages/ForgotpasswordEmail');
+}
+
+exports.resetpassword = async (req,res) =>{
+
+    if(req.query.acvcode){
+        const query = `select stu.id,act.updated_at from student as stu JOIN activation as act on stu.id = act.stu_id where stu.is_active = 1 AND act.code = '${req.query.acvcode}'`;
+        const result = await common.RunQuery(query);
+        if(result.length > 0){
+            let diff = Math.abs(new Date() - new Date(result[0].updated_at));
+            let minutes = Math.floor((diff/1000)/60);
+            if(minutes < 5){
+                res.render('pages/resetpassword',{
+                    data : result,
+                    minutes : minutes
+                });
+            } else {
+                res.send("Link Expired! Please try again");
+            }
+        } else {
+            res.send("bad request 400");
+        }
+    } else {
+        res.send("bad request 400");
+    }
+
+}
+
+exports.activation =  async (req,res) =>{
+    if(req.query.acvcode){
+        const query = `select stu.id,act.updated_at from student as stu JOIN activation as act on stu.id = act.stu_id where stu.is_active = 0 AND act.code = '${req.query.acvcode}'`;
+        const result = await common.RunQuery(query);
+        if(result.length > 0){
+            let diff = Math.abs(new Date() - new Date(result[0].updated_at));
+            let minutes = Math.floor((diff/1000)/60);
+            if(minutes < 1){
+                res.render('pages/activeaccount',{
+                    data : result,
+                    minutes : minutes
+                });
+            }else {
+                res.send("Link Expired! Please Register Again, with same email");
+            }
+            
+        } else {
+            res.send("bad request 400");
+        }
+    } else {
+        res.send("bad request 400");
+    }
+}

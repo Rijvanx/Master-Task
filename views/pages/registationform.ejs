@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('../componants/head.ejs'); %>
+  </head>
+  <body>
+
+    <%- include('../componants/header.ejs'); %>
+
+    <div class="container">
+        <div class="reg-box">
+            <h2 class="text-center text-primary mb-5">Registation</h2>
+            <form class="" id="regi-from">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" name="first_name"  id="first_name"> 
+                        <span class="error" id="error_first_name"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" id="last_name" >
+                        <span class="error" id="error_last_name"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" class="form-control" name="dob"  id="dob">
+                        <span class="error" id="error_dob"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" >
+                        <span class="error" id="error_email"></span>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="mobile_number">Mobile Number</label>
+                        <input type="text" class="form-control" name="mobile_number"  id="mobile_number">
+                        <span class="error" id="error_mobile_number"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" class="form-control" id="gender">
+                        <option value="" selected>Choose...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        </select>
+                        <span class="error" id="error_gender"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                         I accept term & condition
+                        </label>
+                    </div>
+                </div>
+                <div class="alert alert-info" role="alert" id="alert">
+                    <a href=""></a>
+                </div>
+                <button type="button" class="btn btn-primary" id="insert-btn" style="padding: 5px 24px; font-size: 19px;" onclick="validation_insert()">submit</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../componants/script.ejs'); %>
+   <script src="JS/registationscript.js"></script>
+  </body>
+</html>
+
+
+

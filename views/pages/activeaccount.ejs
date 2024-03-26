@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('../componants/head.ejs'); %>
+  </head>
+  <body>
+
+    <%- include('../componants/header.ejs'); %>
+
+    <div class="container">
+        <div class="reg-box">
+            <h2 class="text-center text-primary mb-5">Create Password</h2>
+            <form class="" id="active-from">
+                <input type="hidden" name="id" id="id" value="<%= data[0].id %>">
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="create_password">Create Password</label>
+                    <input type="password" class="form-control" name="create_password"  id="create_password">
+                    <span class="error" id="error_create_password"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_password">
+                    <span class="error" id="error_confirm_password"></span>
+                </div>
+                </div>
+                
+                <div class="alert alert-info" role="alert" id="alert">
+                    <a href="hello"></a>
+                </div>
+                <button type="button" class="btn btn-primary" id="active-btn" onclick="validation_activeuser()" style="padding: 5px 24px; font-size: 19px;">Active</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../componants/script.ejs'); %>
+   <script src="JS/registationscript.js"></script>
+  </body>
+</html>
+
+
+
