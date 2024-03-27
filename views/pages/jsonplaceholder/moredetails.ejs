@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('./componants/head.ejs'); %>
+</head>
+
+<body>
+
+    <%- include('./componants/header.ejs'); %>
+        <div class="container mt-5">
+
+            <table class="table table-bordered" id="data-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+
+                    </tr>
+                </thead>
+                <tbody id="data">
+
+
+                </tbody>
+            </table>
+
+            <div id="commentbox">
+
+            </div>
+
+        </div>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id') || 1;
+
+            async function fetchData() {
+                const apiUrl = `https://jsonplaceholder.typicode.com/posts?id=${id}`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                return data;
+            }
+
+            function displayData(data) {
+                console.log(data);
+                data = data[0]
+                const tableBody = document.querySelector('#data-table tbody');
+                tableBody.innerHTML = `<tr> <td> ID : ${data.id} </td> </tr>
+                                   <tr> <td> UserId : ${data.userId} </td> </tr>
+                                   <tr> <td> Title  : ${data.title} </td> </tr>
+                                   <tr> <td> Body : ${data.body} </td> </tr>
+                                   <tr> <td> <button type="button" onclick="showcomments()" class="btn btn-secondary">comments</button> </td> </tr>`;
+            }
+
+            async function start() {
+                const data = await fetchData();
+                displayData(data);
+
+            }
+
+            async function showcomments() {
+                const apiUrl = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
+                const response = await fetch(apiUrl);
+                const comments = await response.json();
+
+                const commentbox = document.getElementById("commentbox");
+
+                comments.forEach(element => {
+                    let div = document.createElement("div");
+                    div.classList.add("ml-3")
+                    div.innerHTML = ` <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">${element.name}</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>${element.email}</p>
+                                                <p>${element.body}</p>
+                                            </div>
+                                            </div>
+                                        </div>`
+                    commentbox.appendChild(div);
+                });
+            }
+
+            start();
+        </script>
+        <%- include('./componants/script.ejs'); %>
+
+</body>
+
+</html>

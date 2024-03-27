@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('./componants/head.ejs'); %>
+</head>
+
+<body>
+
+    <%- include('./componants/header.ejs'); %>
+        <div class="container mt-5">
+            <div class="row  justify-content-between align-items-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link previous" href="#" aria-label="Previous" id="prev">&laquo;</a>
+                        </li>
+                        <li class="page-item"><a class="page-link current-page" href="#" id="current">1</a></li>
+
+                        <li class="page-item">
+                            <a class="page-link next" href="#" aria-label="Next" id="next">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav aria-label="Page navigation example">
+
+                <form class="form-inline my-2 my-lg-0 mb-3">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search Title" aria-label="Search" id="search-value">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-btn">Search</button>
+                </form>
+            </div>
+            
+            <table class="table table-bordered" id="data-table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">more details</th>
+                    </tr>
+                </thead>
+                <tbody id="data">
+
+
+                </tbody>
+            </table>
+
+        </div>
+        <script>
+        const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+        const itemsPerPage = 10;
+        let currentPage = 1;
+
+        async function fetchData() {
+            const response = await fetch(apiUrl);
+            let data = await response.json();
+            return data;
+        }
+
+        function createTableCell(text) {
+            const cell = document.createElement('td');
+            cell.textContent = text;
+            return cell;
+        }
+
+        function createLinkCell(id) {
+            const cell = document.createElement('td');
+            const link = document.createElement('a');
+            link.textContent = "Details";
+            link.href = `/jsonplaceholder/task/details?id=${id}`;
+            cell.appendChild(link);
+            return cell;
+        }
+
+        function displayData(data) {
+            // console.log(data);
+            const tableBody = document.querySelector('#data-table tbody');
+            tableBody.innerHTML = '';
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            let endIndex = startIndex + itemsPerPage;
+            if(endIndex> data.length){
+                endIndex = data.length;
+            }
+            
+            for (let i = startIndex; i < endIndex && i < data.length; i++) {
+                const row = document.createElement('tr');
+                row.appendChild(createTableCell(data[i].id));
+                row.appendChild(createTableCell(data[i].title));
+                row.appendChild(createLinkCell(data[i].id));
+                tableBody.appendChild(row);
+            }
+        }
+
+        function renderPagination(data) {
+            var totalPages = Math.ceil(data.length / itemsPerPage);
+            const prevButton = document.getElementById('prev');
+            const currentSpan = document.getElementById('current');
+            const nextButton = document.getElementById('next');
+
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    currentSpan.textContent = currentPage;
+                    displayData(data);
+                }
+            });
+            console.log(totalPages);
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) { 
+                    currentPage++;
+                    currentSpan.textContent = currentPage;
+                    displayData(data);
+                } else{
+                    console.log("else vala data",data);
+                }
+            });
+            // console.log(data);
+        }
+
+  
+        
+
+        const filterData = (data,searchTerm) => {
+          const filteredData = data.filter((item) =>
+            item.title.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+          return filteredData;
+        };
+
+        const searchBtn = document.getElementById("search-btn");
+        searchBtn.addEventListener("click", async (event)=>{
+            event.preventDefault();
+            let values = document.getElementById("search-value").value;
+            const data = await fetchData();
+            const fdata = filterData(data,values);
+            displayData(fdata);
+            renderPagination(fdata);
+        });
+
+        async function start() {
+            const data = await fetchData();
+            // console.log(data);
+            displayData(data);
+            renderPagination(data);
+        }
+        // let values = document.getElementById("search-value").value;
+        // if(values ==""){
+            start();
+        // }
+        </script>
+        <%- include('./componants/script.ejs'); %>
+
+</body>
+
+</html>

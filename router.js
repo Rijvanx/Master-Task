@@ -4,6 +4,7 @@ const controller = require('./controllers/controller');
 const registation = require('./controllers/api/registation');
 const controllergrid =  require('./controllers/TaskControllers/gridcontroller');
 const controllerdelimiter =  require('./controllers/TaskControllers/delimitercontroller');
+const jsonplaccontro = require('./controllers/TaskControllers/jsonplaccontro');
 
 // const passport = require("passport");
 // const initializingPassport = require("./controllers/passportConfig");
@@ -66,9 +67,16 @@ router.get('/task/grid',controllergrid.grid);
 router.post('/task/grid',controllergrid.grid);
 
 
-// ========================================== grid ========================================//
+// ========================================== delimite search ========================================//
 
 router.get('/task/delimiter/filtergrid',controllerdelimiter.gridFilter);
 router.post('/task/delimiter/filtergrid',controllerdelimiter.gridFilter);
+
+// ========================================== json Placeholder task ========================================//
+
+router.get('/jsonplaceholder/task/posts', jsonplaccontro.posts);
+router.get('/jsonplaceholder/task/details', jsonplaccontro.moredetails);
+router.get('/jsonplaceholder/task/comment', jsonplaccontro.comment);
+
 
 module.exports = router;
