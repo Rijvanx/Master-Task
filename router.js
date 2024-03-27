@@ -34,13 +34,18 @@ router.get('/DynamicTable/table',(req,res)=>{
 })
 
 
-// ========================================== Dyamic Table  ========================================//
+// ========================================== KukuCube ========================================//
 
 router.get('/KukuCube/kukucube',(req,res)=>{
-    res.render('pages/kukucube/kukucube')
+    res.render('pages/kukucube/kukucube');
+})
+// ========================================== jsevent ========================================//
+
+router.get('/task/jsevent',(req,res) =>{
+    res.render('pages/jsevent/eventsPrac');
 })
 
-// ========================================== KukuCube ========================================//
+// ========================================== TicTacToe  ========================================//
 
 router.get('/TicTacToe/tictactoe',(req,res)=>{
     res.render('pages/TicTacToe/tictactoe')
