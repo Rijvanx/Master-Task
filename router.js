@@ -43,6 +43,19 @@ router.get('/TicTacToe/tictactoe',(req,res)=>{
     res.render('pages/TicTacToe/tictactoe')
 })
 
+// ========================================== 3 Front End Templete ========================================//
+
+router.get('/templete/templete1',(req,res)=>{
+    res.render('pages/templete/templete1')
+})
+
+router.get('/templete/templete2',(req,res)=>{
+    res.render('pages/templete/templete2')
+})
+
+router.get('/templete/templete3',(req,res)=>{
+    res.render('pages/templete/templete3')
+})
 
 
 module.exports = router;
