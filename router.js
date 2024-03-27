@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const controller = require('./controllers/controller');
 const registation = require('./controllers/api/registation');
-const passport = require("passport");
-const initializingPassport = require("./controllers/passportConfig");
+
+// const passport = require("passport");
+// const initializingPassport = require("./controllers/passportConfig");
 
 // initializingPassport.initializingPassport(passport);
 
@@ -21,8 +22,6 @@ router.post('/api/GenerateforgotpasswordLink', registation.Generateforgotpasswor
 router.post('/api/createNewPassword', registation.createNewPassword);
 router.post('/api/login', registation.login);
 router.post('/api/checklogin', registation.checklogin);
-
-
 
 
 

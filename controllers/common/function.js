@@ -10,6 +10,7 @@ function RunQuery(query, params) {
           }
   
           return resolve(results);
+          
         });
     });
 }
