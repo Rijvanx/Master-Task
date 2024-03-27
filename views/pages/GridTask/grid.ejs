@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('./componants/head.ejs'); %>
+    <style>
+      .form{
+   margin: 20px !important;
+}
+
+table{
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+th{
+        text-transform:capitalize;
+}
+
+.grid-table-container{
+    max-width: 1500px;
+    margin: auto !important;
+}
+
+table.grid-table-container{
+    margin: 20px auto !important;
+}
+
+body{
+    min-height: 100vh;
+    background: mintcream !important;
+}
+
+.error{
+    color: red; 
+    margin: 18px 8px;
+}
+    </style>
+  </head>
+  <body>
+
+    <%- include('./componants/header.ejs'); %>
+
+      <form class="row g-3 form grid-table-container" action="/task/grid" method="post">
+          <div class="col-5">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="sql_query"><%= sql %></textarea>
+            </div>
+          <div class="col-auto"> 
+            <button type="submit" class="btn btn-primary mb-3">Run</button>
+          </div>
+          
+      </form>
+
+      <%/* =====  check query run or not ======= */%>
+        <% if(datashow == false){ %>
+            <div class="grid-table-container">
+              <p class="error"><%= err %></p>
+            </div>
+        <% } else { %>
+            <%- include('./componants/table.ejs'); %>
+            <%- include('./componants/gridpagination.ejs'); %>
+        <% } %>
+
+
+    <%/* =====  boostarap script cdn ======= */%>
+    <%- include('./componants/script.ejs'); %>
+   
+  </body>
+ 
+</html>

@@ -170,7 +170,7 @@ exports.createNewPassword = async (req, res) => {
             const salt_query = "SELECT salt FROM user where stu_id= ?";
             const salt_result = await common.RunQuery(salt_query, [stu_id]);
 
-            console.log(salt_result[0].salt);
+            // console.log(salt_result[0].salt);
 
             const password = common.encryptstr(req.body.create_password + salt_result[0].salt);
 
@@ -216,7 +216,7 @@ exports.login = async (req, res) => {
                 if (check_password.length > 0) {
                     
                     const key = process.env.SECRET_KEY;
-                    console.log(key);
+                    // console.log(key);
                     const token = jwt.sign(check_password[0], key,{
                         expiresIn: '5m'
                     });

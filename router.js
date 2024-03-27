@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const controller = require('./controllers/controller');
 const registation = require('./controllers/api/registation');
+const controllergrid =  require('./controllers/TaskControllers/gridcontroller');
 
 // const passport = require("passport");
 // const initializingPassport = require("./controllers/passportConfig");
@@ -56,6 +57,12 @@ router.get('/templete/templete2',(req,res)=>{
 router.get('/templete/templete3',(req,res)=>{
     res.render('pages/templete/templete3')
 })
+
+
+// ========================================== grid ========================================//
+
+router.get('/task/grid',controllergrid.grid);
+router.post('/task/grid',controllergrid.grid);
 
 
 module.exports = router;

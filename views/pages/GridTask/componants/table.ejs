@@ -1,0 +1,19 @@
+<table class="table table-bordered grid-table-container">
+    <thead>
+        <tr>
+        <% fields.forEach(entry => { %>
+            <th scope="col"><%= entry.replace("_", " ") %></th>
+        <% }) %>              
+        </tr>
+    </thead>
+
+    <tbody>
+        <% data.forEach(entry => { %>
+            <tr>
+                <% fields.forEach(f => { %>
+                    <td><%= entry[f] %></td>
+                <% }) %>              
+            </tr>
+        <% }) %>  
+    </tbody>
+</table>
