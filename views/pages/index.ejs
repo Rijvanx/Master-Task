@@ -7,8 +7,36 @@
 
     <%- include('../componants/header.ejs'); %>
 
-    <div class="container">
-      home
+    <div class="container mt-4">
+      <table class="table table-bordered mt-5">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Dynamic Table</td>
+            <td><a href="/DynamicTable/table" target="_blank">/DynamicTable/table</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row">2</th>
+            <td>KuKu Cube</td>
+            <td><a href="/KukuCube/kukucube" target="_blank">/KukuCube/kukucube</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row">3</th>
+            <td>TicTacToe</td>
+            <td><a href="/TicTacToe/tictactoe" target="_blank">/TicTacToe/tictactoe</a></td>
+          </tr>
+          
+        </tbody>
+      </table>
     </div>
 
     <%- include('../componants/script.ejs'); %>

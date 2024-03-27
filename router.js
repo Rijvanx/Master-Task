@@ -24,5 +24,25 @@ router.post('/api/login', registation.login);
 router.post('/api/checklogin', registation.checklogin);
 
 
+// ========================================== Dyamic Table  ========================================//
+
+router.get('/DynamicTable/table',(req,res)=>{
+    res.render('pages/Dynamic Table/addbox')
+})
+
+
+// ========================================== Dyamic Table  ========================================//
+
+router.get('/KukuCube/kukucube',(req,res)=>{
+    res.render('pages/kukucube/kukucube')
+})
+
+// ========================================== KukuCube ========================================//
+
+router.get('/TicTacToe/tictactoe',(req,res)=>{
+    res.render('pages/TicTacToe/tictactoe')
+})
+
+
 
 module.exports = router;

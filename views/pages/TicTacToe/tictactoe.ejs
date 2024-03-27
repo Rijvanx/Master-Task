@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('../../componants/head.ejs'); %>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+
+            body {
+                height: 100vh;
+                /* display: flex; */
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                background: #f06063;
+                color: #fff;
+                font-family: 'Poppins', sans-serif;
+            }
+
+
+            .btn-box {
+                background: #ffffff;
+                height: 17vmin;
+                width: 17vmin;
+                border: none;
+                border-radius: 8px;
+                font-size: 12vmin;
+                color: #6461ff;
+            }
+
+            .container-t {
+                display: grid;
+                grid-template-columns: repeat(3, 170px);
+                row-gap: 14px;
+            }
+
+            .restart {
+                padding: 15px 30px;
+                background: #6461ff;
+                color: #fff;
+                border-radius: 10px;
+                border: none;
+                font-size: 19px;
+                text-transform: uppercase;
+            }
+
+            .winnerTag {
+                color: #fff;
+            }
+
+            .winnerTag {
+                text-align: center;
+                font-size: 40px;
+            }
+
+            .winnerTag span {
+                color: rgb(255, 238, 6);
+                font-size: 45px;
+            }
+
+            .winnerTag div {
+                color: orange;
+            }
+        </style>
+</head>
+
+<body>
+
+    <%- include('../../componants/header.ejs'); %>
+
+        <div class="container mt-4">
+            <h1>Tic Tac Toe</h1>
+            <h2 class="winnerTag mt-4"></h2>
+            <div class="container-t mt-4">
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+                <button class="btn-box"></button>
+            </div>
+
+            <button class="restart mt-4">restart</button>
+        </div>
+
+        <%- include('../../componants/script.ejs'); %>
+
+</body>
+<script>
+    const boxs = document.querySelectorAll(".btn-box");
+    const winnerTag = document.querySelector(".winnerTag");
+
+
+    let winningIndex = [
+        [0, 1, 2],
+        [0, 3, 6],
+        [2, 5, 8],
+        [6, 7, 8],
+        [3, 4, 5],
+        [1, 4, 7],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    let xTurn = true;
+    let winner = false;
+    let count = 0;
+    function Drawgame() {
+        alert("Game is draw");
+        winnerTag.innerHTML = "<span>Game is Draw</span> <br>please Restart Game !";
+    }
+    function winnerDeclare(logo) {
+
+        alert("winner :" + logo);
+        winnerTag.innerHTML = "Winner Is : " + "<span>" + logo + "</span>  <br> <div>please Restart Game ! </div>";;
+
+    }
+    // Add X & O In button
+    boxs.forEach((element) => {
+        element.addEventListener("click", () => {
+            if (!winner) {
+                if (xTurn) {
+                    xTurn = false;
+                    element.innerText = "X";
+                    element.disabled = true;
+                    count++;
+                } else {
+                    xTurn = true;
+                    element.innerText = "O";
+                    element.disabled = true;
+                    count++;
+                }
+                if (count == 9) {
+                    Drawgame();
+                } else {
+                    checkWinner();
+                }
+            }
+
+        });
+    });
+
+
+    function checkWinner() {
+        let index1;
+        let index2;
+        let index3;
+        for (let i of winningIndex) {
+            // console.log(i)
+            index1 = boxs[i[0]].innerText;
+            index2 = boxs[i[1]].innerText;
+            index3 = boxs[i[2]].innerText;
+
+            if ((index1 != "") && (index2 != "") && (index3 != "")) {
+                // console.log(index1,index2,index3);
+                if ((index1 == index2) && (index2 == index3)) {
+                    winner = true;
+                    winnerDeclare(index1);
+                    // alert("winner :" +  index1)
+                    // alert(index1)
+                }
+            }
+        }
+    }
+
+    const restart = document.querySelector(".restart");
+    restart.addEventListener('click', () => {
+        location.reload();
+    });
+</script>
+
+</html>

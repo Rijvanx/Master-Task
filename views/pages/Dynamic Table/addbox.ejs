@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('../../componants/head.ejs'); %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      table,
+      td,
+      tr {
+        border: 1px solid gray;
+        /* border-collapse: collapse; */
+        transition: .3s;
+      }
+
+      td {
+        width: 100px;
+        height: 100px;
+        transition: .3s;
+
+      }
+
+      .main-container {
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        margin: 50px;
+      }
+
+      .btn {
+        width: 40px;
+
+        height: 40px;
+        /* border: 1px solid black; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        cursor: pointer;
+        color: #fff;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+
+        transform: translateY(-4px);
+      }
+
+      .d-flex {
+        display: flex;
+      }
+
+      #add-col-btn,
+      #add-row-btn {
+        background-color: rgba(12, 155, 12, 0.904);
+      }
+
+      #remove-col-btn,
+      #remove-row-btn {
+        background-color: rgba(255, 0, 0, 0.753);
+      }
+
+      tr:nth-of-type(odd) td:nth-of-type(odd) {
+        background-color: tomato;
+      }
+
+      tr:nth-of-type(even) td:nth-of-type(even) {
+        background-color: tomato;
+      }
+    </style>
+</head>
+
+<body>
+
+  <%- include('../../componants/header.ejs'); %>
+
+    <div class="container mt-4">
+      <h1>Rijvan Juneja</h1>
+      <div class="main-container">
+        <div class="">
+          <table class="table">
+            <tr id="tr">
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+
+          </table>
+          <div class="container">
+
+          </div>
+          <div class="d-flex">
+            <div class="btn" id="add-row-btn"><i class="fa-solid fa-plus"></i></div>
+            <div class="btn" id="remove-row-btn"><i class="fa-solid fa-minus"></i></div>
+          </div>
+
+        </div>
+        <div class="btn" id="add-col-btn"><i class="fa-solid fa-plus"></i></div>
+        <div class="btn" id="remove-col-btn"><i class="fa-solid fa-minus"></i></div>
+      </div>
+    </div>
+    <script>
+
+      const table = document.querySelector(".table");
+
+      // let count = table.childElementCount;
+
+      // console.log(count);  
+      console.log(table);
+
+
+      const AddRow = document.getElementById("add-row-btn");
+      AddRow.addEventListener('click', () => {
+
+        const tr_first = document.querySelector("#tr");
+        const count = tr_first.childElementCount;
+        console.log(count)
+
+        let tr = document.createElement('tr');
+
+        for (let i = 1; i <= count; i++) {
+          let td = document.createElement('td');
+          tr.appendChild(td);
+        }
+        table.appendChild(tr);
+      });
+
+      const AddCol = document.getElementById("add-col-btn");
+      AddCol.addEventListener('click', () => {
+
+        let trs = document.querySelectorAll('.table tr');
+        for (let tr of trs) {
+          let td = document.createElement('td');
+          tr.appendChild(td);
+        }
+      });
+
+
+      const RemoveRow = document.getElementById("remove-row-btn");
+      RemoveRow.addEventListener('click', () => {
+        const trs = document.querySelectorAll('.table tr');
+        console.log(trs);
+
+        if (trs.length > 2) {
+          table.removeChild(table.lastChild);
+        } else {
+          alert("you can't delete row , bcz row less than 2");
+        }
+      });
+
+
+      const RemoveCol = document.getElementById("remove-col-btn");
+      RemoveCol.addEventListener('click', () => {
+
+        const trs = document.querySelectorAll('.table tr');
+        console.log(trs);
+
+        const tr_first = document.querySelector("#tr");
+        const count = tr_first.childElementCount;
+
+        if (count > 2) {
+          for (let tr of trs) {
+            tr.removeChild(tr.lastChild);
+          }
+        } else {
+          alert("you can't delete col , bcz col less than 2");
+        }
+
+      });
+
+    </script>
+    <%- include('../../componants/script.ejs'); %>
+
+</body>
+
+</html>
