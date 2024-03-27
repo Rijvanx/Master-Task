@@ -1,4 +1,8 @@
 
+/* *****************************************************************************************************************
+                                                  All Get Reqvests
+*********************************************************************************************************************/ 
+
 const con = require("../Databases/config");
 const common = require("../controllers/common/function");
 
@@ -18,6 +22,7 @@ exports.forgotpassword = (req,res) =>{
     res.render('pages/ForgotpasswordEmail');
 }
 
+// render
 exports.resetpassword = async (req,res) =>{
 
     if(req.query.acvcode){
@@ -43,6 +48,7 @@ exports.resetpassword = async (req,res) =>{
 
 }
 
+// render
 exports.activation =  async (req,res) =>{
     if(req.query.acvcode){
         const query = `select stu.id,act.updated_at from student as stu JOIN activation as act on stu.id = act.stu_id where stu.is_active = 0 AND act.code = '${req.query.acvcode}'`;

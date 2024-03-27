@@ -243,7 +243,7 @@ function login(){
         xhr.onload = () => {
             if (xhr.status == 200) {
               const res = JSON.parse(xhr.responseText);
-              console.log(res);
+              console.log("res:",res);
               const alert = document.getElementById("alert-login");
               alert.style.display = "block";
               const a = alert.getElementsByTagName("a")[0];

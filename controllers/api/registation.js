@@ -1,10 +1,13 @@
+/* *****************************************************************************************************************
+                                                  All POST Reqvests
+****************************************************************************************************************** */
+
 const con = require("../../Databases/config");
 const common = require("../common/function");
 const jwt = require('jsonwebtoken');
+
+
 require('dotenv').config();
-
-
-
 
 exports.InsertRegistation = async (req, res) => {
     const obj = {
@@ -206,17 +209,17 @@ exports.login = async (req, res) => {
             const get_selt = await common.RunQuery(get_selt_query, [req.body.email]);
 
             if (get_selt.length > 0) {
-
                 const password = common.encryptstr(req.body.password + get_selt[0].salt);
                 const check_password_query = "SELECT stu.id,stu.first_name FROM student as stu JOIN user on stu.id = user.stu_id where email =? AND password = ?";
                 const check_password = await common.RunQuery(check_password_query, [req.body.email, password]);
-
+                
                 if (check_password.length > 0) {
                     
                     const key = process.env.SECRET_KEY;
+                    console.log(key);
                     const token = jwt.sign(check_password[0], key,{
-                                    expiresIn: '5m'
-                                });
+                        expiresIn: '5m'
+                    });
                     res.cookie('token', token,{maxAge : 5*60*1000});
                     response = {
                         status: 200,
