@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('./componants/head.ejs'); %>
+    <style>
+        
+        body{
+            min-height: 100vh;
+            background: mintcream !important;
+        }
+
+        .error{
+            color: red; 
+            margin: 18px 8px;
+        }
+
+        a{
+        color: #000000;
+        text-decoration: none;
+        }
+
+        .border-con{
+            padding: 30px !important;
+            border: 1px solid rgba(128, 128, 128, 0.719);
+            margin: 30px 0px;
+        }
+    </style>
+  </head>
+  <body onload="selectinput()">
+
+    <%- include('./componants/header.ejs'); %>
+    
+    <div class="container-form d-flex mt-4 ml-4">
+        <form class="d-flex from-id" role="search" method="post" action="/task/delimiter/filtergrid">
+          <% if(datashow) { %> 
+            <input class="form-control me-2" name="exp" value="<%= exp%>" type="text" aria-label="Search" id="myTextInput">
+          <% } else { %>
+            <input class="form-control me-2" name="exp" type="text" aria-label="Search" id="myTextInput">
+          <% } %>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+
+      <%/* =====  check query run or not ======= */%>
+        <% if(datashow == false){ %>
+            <div class="grid-table-container mt-4 container ml-4">
+              <p class="error"><%= err %></p>
+            </div>
+        <% } else { %>
+
+            <%- include('./componants/table04march.ejs'); %>
+
+        <% } %>
+
+
+    <%/* =====  boostarap script cdn ======= */%>
+    <%- include('./componants/script.ejs'); %>
+   
+  </body>
+  <script>
+    function selectinput(){
+      var input = document.getElementById('myTextInput');
+      input.focus();
+      input.select();
+    }
+  </script>
+ 
+</html>

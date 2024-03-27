@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require('./controllers/controller');
 const registation = require('./controllers/api/registation');
 const controllergrid =  require('./controllers/TaskControllers/gridcontroller');
+const controllerdelimiter =  require('./controllers/TaskControllers/delimitercontroller');
 
 // const passport = require("passport");
 // const initializingPassport = require("./controllers/passportConfig");
@@ -64,5 +65,10 @@ router.get('/templete/templete3',(req,res)=>{
 router.get('/task/grid',controllergrid.grid);
 router.post('/task/grid',controllergrid.grid);
 
+
+// ========================================== grid ========================================//
+
+router.get('/task/delimiter/filtergrid',controllerdelimiter.gridFilter);
+router.post('/task/delimiter/filtergrid',controllerdelimiter.gridFilter);
 
 module.exports = router;

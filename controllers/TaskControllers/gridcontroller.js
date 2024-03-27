@@ -84,5 +84,4 @@ exports.grid = (req,res) =>{
         // console.log(e);
     }
     
-
 }
