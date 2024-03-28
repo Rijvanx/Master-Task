@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('./componants/head.ejs'); %>
+    <style>
+        .form{
+   margin: 20px !important;
+}
+
+table{
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+th{
+        text-transform:capitalize;
+}
+
+.grid-table-container{
+    max-width: 1500px;
+    margin: auto !important;
+}
+
+table.grid-table-container{
+    margin: 20px auto !important;
+}
+table.grid-table-container tr td{
+    padding: 1.5rem 0.5rem !important;
+}
+
+body{
+    min-height: 100vh;
+    background: mintcream !important;
+}
+
+.error{
+    color: red; 
+    margin: 18px 8px;
+}
+
+.arrow-contain a{
+    color: black;
+    text-decoration: none;
+    opacity: 0.3;
+}
+.arrow-contain a:hover{
+    color: black;
+    text-decoration: none;
+    opacity: 1;
+}
+.arrow-contain{
+    margin: 2px 5px;
+    /* display: flex; */
+}
+a{
+  color: #000000;
+  text-decoration: none;
+}
+.from-id{
+    max-width: 300px;
+    /* margin-top: 50px;
+    margin-left: 175px; */
+}
+.container-form{
+    margin-top: 50px !important;
+    max-width: 1500px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.container-form a{
+    margin: 0px 20px;
+}
+
+/* .container-form div.collapse{
+    min-width: 1300px;
+} */
+
+.table > thead:nth-child(1) > tr:nth-child(1) {
+    background: #0b5ed7;
+    color: #fff;
+    }
+    </style>
+  </head>
+  <body onload="selectinput()">
+
+    <%- include('../../componants/header.ejs'); %>
+    
+    <div class="container-form d-flex">
+        <form class="d-flex from-id" role="search" method="post" action="/filtergrid">
+          <input class="form-control me-2" name="ids"  type="text" placeholder="1,2,3 search id" value="<%= datashow? filterdata.id : null %>" aria-label="Search" id="myTextInput">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            More Filter
+          </a>
+        <div class="collapse mt-4  <% if( filterdata.first != null  ){ %>show <%}%> " id="collapseExample">
+          <div class="card card-body">
+            <form action="/filtergrid" class="d-flex" method="post">
+              <input class="form-control me-2" name="first"  value="<%= datashow? filterdata.first : null %>" type="text" placeholder="First Name" aria-label="Search">
+              <input class="form-control me-2" name="last"  value="<%= datashow? filterdata.last : null %>" type="text" placeholder="Last Name" aria-label="Search">
+              <input class="form-control me-2" name="email"  value="<%= datashow? filterdata.email : null %>" ype="text" placeholder="Email" aria-label="Search">
+              <input class="form-control me-2" name="gender"  value="<%= datashow? filterdata.gender : null %>" type="text" placeholder="gender" aria-label="Search">
+              <input class="form-control me-2" name="city"  value="<%= datashow? filterdata.city : null %>" type="text" placeholder="city" aria-label="Search">
+              <input class="form-control me-2" name="country"  value="<%= datashow? filterdata.country : null %>" type="text" placeholder="country" aria-label="Search">
+              <select class="form-control me-2 form-select" aria-label="Default select example" name="cgpa">
+                <% if(datashow){ %>
+                  <option <% if(filterdata.cgpa == null) {%> selected <% } %> >CGPA</option>
+                  <option value="0" <% if(filterdata.cgpa == 0) {%> selected <% } %> >Below 5</option>
+                  <option value="1" <% if(filterdata.cgpa == 1) {%> selected <% } %> >Above 5</option>
+                <% } else {%>
+                  <option selected >CGPA</option>
+                  <option value="0" >Below 5</option>
+                  <option value="1" >Above 5</option>
+                <% } %>
+              </select>
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+    </div>
+
+      <%/* =====  check query run or not ======= */%>
+        <% if(datashow == false){ %>
+            <div class="grid-table-container">
+              <p class="error"><%= err %></p>
+            </div>
+        <% } else { %>
+
+            <%- include('./componants/table04march.ejs'); %>
+            <%- include('./componants/pagiMarch4.ejs'); %>
+
+        <% } %>
+
+
+    <%/* =====  boostarap script cdn ======= */%>
+    <%- include('./componants/script.ejs'); %>
+   
+  </body>
+  <script>
+    function selectinput(){
+      var input = document.getElementById('myTextInput');
+      input.focus();
+      input.select();
+    }
+  </script>
+ 
+</html>

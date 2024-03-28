@@ -23,11 +23,10 @@ exports.InsertRegistation = async (req, res) => {
     try {
 
         // check email alredy exist if exist then get is_active to check user has alredy account activeor not
-        const select = "SELECT stu.id as id,stu.email,stu.is_active,act.code as code FROM student as stu left join activation as act on stu.id=act.stu_id where stu.email = ?";
+        const select = "SELECT stu.id as id,stu.email,stu.is_active,act.code as code FROM student_login as stu left join activation as act on stu.id=act.stu_id where stu.email = ?";
         var result = await common.RunQuery(select, [obj.email]);
 
         if (result.length > 0) {
-
 
             if (result[0].is_active == 1) {
                 response = [{
@@ -35,9 +34,8 @@ exports.InsertRegistation = async (req, res) => {
                     msg: "You are Alredy Register !",
                 }];
             } else if (result[0].is_active == 0) {
-
                 const code = common.generateString(20);
-                const activation_query = "UPDATE activation SET code = ? WHERE (id = ?)";
+                const activation_query = "UPDATE activation SET code = ? WHERE (stu_id = ?)";
                 const activation = await common.RunQuery(activation_query, [code, result[0].id]);
                 response = [{
                     status: "400",
@@ -50,7 +48,7 @@ exports.InsertRegistation = async (req, res) => {
 
         } else {
             // insert student table 
-            const student_query = "INSERT INTO student (first_name, last_name, dob, email, mobile_number, gender, is_active, is_delete) VALUES (?,?,?,?,?,?,?,?)";
+            const student_query = "INSERT INTO student_login (first_name, last_name, dob, email, mobile_number, gender, is_active, is_delete) VALUES (?,?,?,?,?,?,?,?)";
             var student = await common.RunQuery(student_query, [obj.first_name, obj.last_name, obj.dob, obj.email, obj.mobile_number, obj.gender, 0, 0]);
             var id = student.insertId;
 
@@ -79,7 +77,6 @@ exports.InsertRegistation = async (req, res) => {
             msg: err,
         }];
     }
-
     res.send(response);
 
 }
@@ -98,7 +95,7 @@ exports.activationapi = async (req, res) => {
             const user = await common.RunQuery(user_query, [password, salt, stu_id]);
 
             // active user in  user table 
-            const student_query = "UPDATE student SET is_active = 1 WHERE (id = ?)";
+            const student_query = "UPDATE student_login SET is_active = 1 WHERE (id = ?)";
             const student = await common.RunQuery(student_query, [stu_id]);
 
             res.send([{
@@ -122,7 +119,7 @@ exports.GenerateforgotpasswordLink = async (req, res) => {
     if (req.body.email) {
         try {
             // check email exist or not if exixt then get id of user(student table)
-            const email_query = "SELECT id FROM student where email=? AND is_active = 1";
+            const email_query = "SELECT id FROM student_login where email=? AND is_active = 1";
             const email = await common.RunQuery(email_query, [req.body.email]);
             if (email.length > 0) {
                 const id = email[0].id;
@@ -205,12 +202,12 @@ exports.login = async (req, res) => {
 
         try {
             // get selt and check email is exist or not
-            const get_selt_query = "SELECT stu.id,user.salt FROM student as stu join user on stu.id = user.stu_id where email = ?";
+            const get_selt_query = "SELECT stu.id,user.salt FROM student_login as stu join user on stu.id = user.stu_id where email = ?";
             const get_selt = await common.RunQuery(get_selt_query, [req.body.email]);
 
             if (get_selt.length > 0) {
                 const password = common.encryptstr(req.body.password + get_selt[0].salt);
-                const check_password_query = "SELECT stu.id,stu.first_name FROM student as stu JOIN user on stu.id = user.stu_id where email =? AND password = ?";
+                const check_password_query = "SELECT stu.id,stu.first_name FROM student_login as stu JOIN user on stu.id = user.stu_id where email =? AND password = ?";
                 const check_password = await common.RunQuery(check_password_query, [req.body.email, password]);
                 
                 if (check_password.length > 0) {
@@ -264,7 +261,7 @@ exports.checklogin = async (req ,res) =>{
         try{
             const key = process.env.SECRET_KEY;
             let decoded = jwt.verify(token, key);
-            const query = "SELECT email,first_name FROM student where id = ?";
+            const query = "SELECT email,first_name FROM student_login where id = ?";
             const result = await common.RunQuery(query, [decoded.id]);
             response = {
                 status : 200,

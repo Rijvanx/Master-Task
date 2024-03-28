@@ -12,6 +12,8 @@ const fetch_stu_data = require('./controllers/TaskControllers/crud_app_ajax/api/
 const fetch_single_data = require('./controllers/TaskControllers/crud_app_ajax/api/fetch_single_data');
 const update = require('./controllers/TaskControllers/crud_app_ajax/api/update');
 const examresult = require('./controllers/TaskControllers/examresultcontroller');
+const fieldsfilter = require('./controllers/TaskControllers/allfieldfiltercontroller');
+
 
 
 // const passport = require("passport");
@@ -37,97 +39,102 @@ router.post('/api/checklogin', registation.checklogin);
 
 // ========================================== Dyamic Table  ========================================//
 
-router.get('/DynamicTable/table',(req,res)=>{
+router.get('/DynamicTable/table',controller.authcheck,(req,res)=>{
     res.render('pages/Dynamic Table/addbox')
 })
 
 
 // ========================================== KukuCube ========================================//
 
-router.get('/KukuCube/kukucube',(req,res)=>{
+router.get('/KukuCube/kukucube',controller.authcheck,(req,res)=>{
     res.render('pages/kukucube/kukucube');
 })
 // ========================================== jsevent ========================================//
 
-router.get('/task/jsevent',(req,res) =>{
+router.get('/task/jsevent',controller.authcheck,(req,res) =>{
     res.render('pages/jsevent/eventsPrac');
 })
 
 // ========================================== TicTacToe  ========================================//
 
-router.get('/TicTacToe/tictactoe',(req,res)=>{
+router.get('/TicTacToe/tictactoe',controller.authcheck,(req,res)=>{
     res.render('pages/TicTacToe/tictactoe')
 })
 
 // ========================================== 3 Front End Templete ========================================//
 
-router.get('/templete/templete1',(req,res)=>{
+router.get('/templete/templete1',controller.authcheck,(req,res)=>{
     res.render('pages/templete/templete1')
 })
 
-router.get('/templete/templete2',(req,res)=>{
+router.get('/templete/templete2',controller.authcheck,(req,res)=>{
     res.render('pages/templete/templete2')
 })
 
-router.get('/templete/templete3',(req,res)=>{
+router.get('/templete/templete3',controller.authcheck,(req,res)=>{
     res.render('pages/templete/templete3')
 })
 
 
 // ========================================== grid ========================================//
 
-router.get('/task/grid',controllergrid.grid);
+router.get('/task/grid',controller.authcheck,controllergrid.grid);
 router.post('/task/grid',controllergrid.grid);
 
 
 // ========================================== delimite search ========================================//
 
-router.get('/task/delimiter/filtergrid',controllerdelimiter.gridFilter);
+router.get('/task/delimiter/filtergrid',controller.authcheck,controllerdelimiter.gridFilter);
 router.post('/task/delimiter/filtergrid',controllerdelimiter.gridFilter);
 
 // ========================================== json Placeholder task ========================================//
 
-router.get('/jsonplaceholder/task/posts', jsonplaccontro.posts);
-router.get('/jsonplaceholder/task/details', jsonplaccontro.moredetails);
-router.get('/jsonplaceholder/task/comment', jsonplaccontro.comment);
+router.get('/jsonplaceholder/task/posts',controller.authcheck, jsonplaccontro.posts);
+router.get('/jsonplaceholder/task/details',controller.authcheck, jsonplaccontro.moredetails);
+router.get('/jsonplaceholder/task/comment',controller.authcheck, jsonplaccontro.comment);
 
 // ========================================== Time zon task ========================================//
 
-router.get('/task/timezone',(req,res)=>{
+router.get('/task/timezone',controller.authcheck,(req,res)=>{
     res.render('pages/TimezonTask/timezone')
 })
 
 
 // ========================================= crud app task ========================================//
 
-router.get('/task/form', crudappcontroller.form);
+router.get('/task/form',controller.authcheck, crudappcontroller.form);
 router.post('/task/form', crudappcontroller.form);
 
-router.get('/notfound', (req,res)=>{
+router.get('/notfound',controller.authcheck, (req,res)=>{
     res.render("pages/crud_app/notfound")
 });
 
-router.get('/task/edit', crudappcontroller.updateform);
+router.get('/task/edit',controller.authcheck, crudappcontroller.updateform);
 router.post('/task/api/update',crudappcontroller.update);
 
 
 // ========================================= crud app with AJAX task ========================================//
 
-router.get('/stepform', crudajax.multistepfrom);
+router.get('/stepform',controller.authcheck, crudajax.multistepfrom);
 
 // // =========== API'S ==========// 
-router.get('/api/getstate', crudajax.getstate);
-router.get('/api/city', crudajax.getcity);
-router.get('/students', crudajax.students);
+router.get('/api/getstate',controller.authcheck, crudajax.getstate);
+router.get('/api/city', controller.authcheck,crudajax.getcity);
+router.get('/students',controller.authcheck, crudajax.students);
 router.post('/api/insertBasicData', insert.insertBasicData);
-router.get('/api/students', fetch_stu_data.fetchAllStudents);
-router.get('/api/fetch_single_data', fetch_single_data.fetch_single_data);
+router.get('/api/students',controller.authcheck, fetch_stu_data.fetchAllStudents);
+router.get('/api/fetch_single_data',controller.authcheck, fetch_single_data.fetch_single_data);
 router.post('/api/updateAllData', update.updateAllData);
 
 // ========================================= Exam Result task ========================================//
 
-router.get("/getExamResult", examresult.getResult);
-router.get("/getMoreInfoOfResult", examresult.getMoreInfo);
+router.get("/getExamResult",controller.authcheck, examresult.getResult);
+router.get("/getMoreInfoOfResult",controller.authcheck, examresult.getMoreInfo);
 
+
+// ========================================= all Fild filter task ========================================//
+
+router.get('/filtergrid',controller.authcheck,fieldsfilter.gridFilter);
+router.post('/filtergrid',fieldsfilter.gridFilter);
 
 module.exports = router;

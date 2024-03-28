@@ -1,59 +1,74 @@
-<nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/registation">Registation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/forgotpassword">Forgot password</a>
-          </li>
-          
-        </ul>
-        <!-- <li class="nav-item"> -->
-          
-          <!-- </li> -->
-        </div>
-        <a class="nav-link " id="login" href="/login">Login</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/registation">Registation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/forgotpassword">Forgot password</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Project list</a>
+        </li>
+      </ul>
+      <!-- <li class="nav-item"> -->
+
+      <!-- </li> -->
     </div>
-  </nav>
+    <a class="nav-link " id="login" href="/login">Login</a>
+    <a class="nav-link " id="login-out" href="/login" onclick="deleteAllCookies()">Login Out</a>
 
-  <script>
-        function checklogin(){
-          const xhr = new XMLHttpRequest();
-          xhr.open("post", "/api/checklogin");
-          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          // console.log(Data);
-        
-          xhr.onload = () => {
-              if (xhr.status == 200) {
-                const res = JSON.parse(xhr.responseText);
-                console.log(res);
-                if(res.status == 200){
-                  const login = document.querySelector("#login");
-                  login.textContent = `Welcome ${res.data.first_name}`;
-                  login.href = "#";
+  </div>
+</nav>
 
-                  document.getElementById("login-btn").style.display =  "none";
-                  const alert = document.getElementById("alert-login");
-                  alert.style.display = "block";
-                  const a = alert.getElementsByTagName("a")[0];
-                  a.textContent = `You Are Alredy Logged`;
-                }
-              } else {
-                  console.log(`Error: ${xhr}`);
-              }
-          };
-          xhr.send();
+<script>
+  function deleteAllCookies() {
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i];
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+
+
+  }
+  function checklogin() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("post", "/api/checklogin");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // console.log(Data);
+
+    xhr.onload = () => {
+      if (xhr.status == 200) {
+        const res = JSON.parse(xhr.responseText);
+        console.log(res);
+        if (res.status == 200) {
+          const login = document.querySelector("#login");
+          login.textContent = `Welcome ${res.data.first_name}`;
+          login.href = "#";
+
+          const loginout = document.querySelector("#login-out").style.display = "block";
+
+          document.getElementById("login-btn").style.display = "none";
+          const alert = document.getElementById("alert-login");
+          alert.style.display = "block";
+          const a = alert.getElementsByTagName("a")[0];
+          a.textContent = `You Are Alredy Logged`;
+        }
+      } else {
+        console.log(`Error: ${xhr}`);
       }
-        checklogin();
-  </script>
-
-
-
-  
+    };
+    xhr.send();
+  }
+  checklogin();
+</script>

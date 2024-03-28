@@ -1,0 +1,27 @@
+<table class="table table-striped grid-table-container">
+    <thead>
+        <tr class="align-middle">
+
+        <% fields.forEach(entry => { %>
+            <th scope="col">
+                <%= entry.name.replace("_", " ") %>
+            </th>
+        <% }) %>   
+        
+        </tr>
+    </thead>
+
+    <tbody>
+        <% data.forEach(entry => { %>
+            <tr>
+                <% fields.forEach(f => { %>
+                    <% if(f.type == 10) { %>
+                        <td><%= (entry[f.name]).toDateString() %></td>
+                    <% } else { %>
+                    <td><%= entry[f.name] %></td>
+                    <% } %>
+                <% }) %>              
+            </tr>
+        <% }) %>  
+    </tbody>
+</table>

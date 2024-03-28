@@ -60,3 +60,7 @@ a:hover{
 #alert,#alert-login{
   display: none;
 }
+
+#login-out{
+  display: none;
+}

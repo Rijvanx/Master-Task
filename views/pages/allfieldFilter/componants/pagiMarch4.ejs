@@ -1,0 +1,32 @@
+<nav aria-label="Page navigation example" style="margin-left: 173px;">
+    <ul class="pagination">      
+        <!-- Previous btns -->
+        <li class="page-item">
+            <a class="page-link" href="/filtergrid?n=1&query=<%= sql %>" aria-label="Previous" <% if(pagenum == 1){ %> onclick="return false;" <% } %> >
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li>
+            <a class="page-link" href="/filtergrid?n=<%= Number(pagenum) - 1 %>&query=<%= sql %>" aria-label="Previous" <% if(pagenum == 1){ %> onclick="return false;" <% } %>>
+                <span aria-hidden="true"> < </span>
+            </a>
+        </li>
+        <!-- current page  -->
+        <li class="page-item"><a class="page-link" href="#">
+            <%= pagenum %> 
+        </a></li>
+
+        <!-- next btns  -->
+        <li class="page-item">
+            <a class="page-link" href="/filtergrid?n=<%= Number(pagenum) + 1 %>&query=<%= sql %>" aria-label="Previous" <% if( pagenum == lastpage ){ %> onclick="return false;" <% } %>>
+                <span aria-hidden="true"> > </span>
+            </a>
+        </li>
+        <li class="page-item">  
+            <a class="page-link" href="/filtergrid?n=<%= lastpage %>&query=<%= sql %>" aria-label="Next" <% if( pagenum >= lastpage ){ %> onclick="return false;" <% } %> >
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+
+</nav>

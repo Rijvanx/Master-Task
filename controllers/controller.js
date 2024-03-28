@@ -3,8 +3,12 @@
                                                   All Get Reqvests
 *********************************************************************************************************************/ 
 
+const jwt = require('jsonwebtoken');
+
 const con = require("../Databases/config");
 const common = require("../controllers/common/function");
+
+require("dotenv").config();
 
 exports.index = (req, res) => {
     res.render('pages/index');
@@ -26,7 +30,7 @@ exports.forgotpassword = (req,res) =>{
 exports.resetpassword = async (req,res) =>{
 
     if(req.query.acvcode){
-        const query = `select stu.id,act.updated_at from student as stu JOIN activation as act on stu.id = act.stu_id where stu.is_active = 1 AND act.code = '${req.query.acvcode}'`;
+        const query = `select stu.id,act.updated_at from student_login as stu JOIN activation as act on stu.id = act.stu_id where stu.is_active = 1 AND act.code = '${req.query.acvcode}'`;
         const result = await common.RunQuery(query);
         if(result.length > 0){
             let diff = Math.abs(new Date() - new Date(result[0].updated_at));
@@ -51,8 +55,9 @@ exports.resetpassword = async (req,res) =>{
 // render
 exports.activation =  async (req,res) =>{
     if(req.query.acvcode){
-        const query = `select stu.id,act.updated_at from student as stu JOIN activation as act on stu.id = act.stu_id where stu.is_active = 0 AND act.code = '${req.query.acvcode}'`;
+        const query = `select stu.id,act.updated_at from student_login as stu JOIN activation as act on stu.id = act.stu_id where stu.is_active = 0 AND act.code = '${req.query.acvcode}'`;
         const result = await common.RunQuery(query);
+        console.log(result);
         if(result.length > 0){
             let diff = Math.abs(new Date() - new Date(result[0].updated_at));
             let minutes = Math.floor((diff/1000)/60);
@@ -70,5 +75,22 @@ exports.activation =  async (req,res) =>{
         }
     } else {
         res.send("bad request 400");
+    }
+}
+
+exports.authcheck = async (req,res,next) =>{
+    var token =  req.cookies.token
+    if(typeof token === 'undefined'){
+        res.redirect('/login');
+    }else{
+        const key = process.env.SECRET_KEY;
+        let decoded = jwt.verify(token, key);
+        const query = "SELECT email,first_name FROM student_login where id = ?";
+        const result = await common.RunQuery(query, [decoded.id]);
+        if(result.length > 0){
+            next()
+        }else{
+            res.render('/login');
+        }
     }
 }
