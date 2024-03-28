@@ -1,0 +1,57 @@
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
+--
+-- Host: 127.0.0.1    Database: test
+-- ------------------------------------------------------
+-- Server version	8.0.36-0ubuntu0.20.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `stu_id` int DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  `password` varchar(250) DEFAULT NULL,
+  `salt` varchar(45) DEFAULT NULL,
+  `is_active` int DEFAULT '1',
+  `is_delete` int DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,1,'student','1b8bfc598c5536be14e25242eece0a45','TH7Z',0,0,'2024-03-21 10:56:44'),(2,2,'student','69e0583479536d4191c918164543da76','J5ty',1,0,'2024-03-21 10:59:15'),(3,3,'student','1be3c2da7afd92db12bca20725d9a5fe','NKAh',1,0,'2024-03-22 09:23:11'),(4,4,'student','d32501af7f69753f7da5bb433274a838','iIrK',1,0,'2024-03-22 12:30:39'),(5,5,'student','46058974b2598b30c84693f9280b71e3','L0nN',1,0,'2024-03-26 06:24:16'),(6,6,'student','13565a9c94891b5d69510f01b1c206ed','wiyk',1,0,'2024-03-27 07:19:02'),(7,8,'student_login',NULL,NULL,0,0,'2024-03-28 09:35:16'),(8,9,'student','3c6917f78efeeab605f77f5ed72b015b','XAwb',1,0,'2024-03-28 11:33:57'),(9,10,'student','09a63db0c6ae1d768e9cefe7b0d3f7b0','PSMd',1,0,'2024-03-28 11:37:23');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-03-28 18:53:23

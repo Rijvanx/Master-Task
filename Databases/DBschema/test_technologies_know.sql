@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ssms
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	8.0.36-0ubuntu0.20.04.1
 
@@ -16,33 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `technologies_know`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `technologies_know`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
+CREATE TABLE `technologies_know` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `stu_id` int DEFAULT NULL,
-  `role` varchar(50) DEFAULT NULL,
-  `password` varchar(250) DEFAULT NULL,
-  `salt` varchar(45) DEFAULT NULL,
-  `is_active` int DEFAULT '1',
-  `is_delete` int DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `emp_id` int DEFAULT NULL,
+  `tech_name` varchar(45) DEFAULT NULL,
+  `tech_level` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `technologies_know`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,'student','e944fb232dd53bf7b9b144475fabae12','dnvq',1,0,'2024-03-21 08:40:53'),(2,2,'student','c98ef4c049de98f9cd3e246075678840','q201',1,0,'2024-03-21 08:53:09'),(3,3,'student',NULL,NULL,0,0,'2024-03-21 08:54:05'),(4,4,'student',NULL,NULL,0,0,'2024-03-21 09:04:06'),(5,5,'student','17d64d1892f202d5ad0efeebc1322937','FXkJ',1,0,'2024-03-21 09:04:27'),(6,6,'student',NULL,NULL,0,0,'2024-03-21 09:46:55'),(7,7,'student',NULL,NULL,0,0,'2024-03-21 10:00:39');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `technologies_know` WRITE;
+/*!40000 ALTER TABLE `technologies_know` DISABLE KEYS */;
+INSERT INTO `technologies_know` VALUES (1,1,'php','mideator'),(2,1,'laravel','expert'),(3,12,'php','expert'),(4,12,'laravel','mideator'),(5,12,'oracle','expert'),(6,13,'php','expert'),(7,13,'laravel','mideator'),(8,13,'oracle','expert'),(9,14,'php','beginer'),(10,14,'mysql','beginer'),(11,14,'laravel','beginer'),(12,14,'oracle','beginer');
+/*!40000 ALTER TABLE `technologies_know` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-21 15:38:43
+-- Dump completed on 2024-03-28 18:53:23

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ssms
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	8.0.36-0ubuntu0.20.04.1
 
@@ -16,32 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `activation`
+-- Table structure for table `referance_contact`
 --
 
-DROP TABLE IF EXISTS `activation`;
+DROP TABLE IF EXISTS `referance_contact`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `activation` (
+CREATE TABLE `referance_contact` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `stu_id` int DEFAULT NULL,
-  `code` varchar(250) DEFAULT NULL,
-  `is_active` int DEFAULT '1',
-  `is_delete` int DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `emp_id` int DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `contact_number` varchar(45) DEFAULT NULL,
+  `relation` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `activation`
+-- Dumping data for table `referance_contact`
 --
 
-LOCK TABLES `activation` WRITE;
-/*!40000 ALTER TABLE `activation` DISABLE KEYS */;
-INSERT INTO `activation` VALUES (1,1,'t8R7xJH5lUMYYFBp9Tg5',1,0,'2024-03-21 08:40:53','2024-03-21 14:12:46'),(2,2,'5pBzAz5q8iaqiNRA4bjR',1,0,'2024-03-21 08:53:09','2024-03-21 14:23:09'),(3,3,'vHBXEdVvGCE3m4xXU9gf',1,0,'2024-03-21 08:54:05','2024-03-21 14:25:01'),(4,4,'PsjEgo6yrykOdQLxFcNC',1,0,'2024-03-21 09:04:06','2024-03-21 14:34:06'),(5,5,'RIo2qlRMofyIt9TQdRwb',1,0,'2024-03-21 09:04:27','2024-03-21 14:37:31'),(6,6,'HcZnUbTdh17MvZsLHsDp',1,0,'2024-03-21 09:46:55','2024-03-21 15:28:57'),(7,7,'ndie3u7kzfmY4FdkTSaR',1,0,'2024-03-21 10:00:39','2024-03-21 15:35:17');
-/*!40000 ALTER TABLE `activation` ENABLE KEYS */;
+LOCK TABLES `referance_contact` WRITE;
+/*!40000 ALTER TABLE `referance_contact` DISABLE KEYS */;
+INSERT INTO `referance_contact` VALUES (1,1,'WEDR','654','SDEF'),(2,12,'sdfsd','5675867412','Friend'),(3,13,'sdfsd','5675867412','Friend'),(4,14,'cccccc','3443333333','cccc'),(5,14,'cccc','3333333333','ccccc');
+/*!40000 ALTER TABLE `referance_contact` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-21 15:38:43
+-- Dump completed on 2024-03-28 18:53:24

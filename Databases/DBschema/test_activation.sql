@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ssms
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	8.0.36-0ubuntu0.20.04.1
 
@@ -16,35 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `student`
+-- Table structure for table `activation`
 --
 
-DROP TABLE IF EXISTS `student`;
+DROP TABLE IF EXISTS `activation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `student` (
+CREATE TABLE `activation` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `mobile_number` varchar(45) DEFAULT NULL,
-  `gender` varchar(45) DEFAULT NULL,
+  `stu_id` int DEFAULT NULL,
+  `code` varchar(250) DEFAULT NULL,
   `is_active` int DEFAULT '1',
   `is_delete` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student`
+-- Dumping data for table `activation`
 --
 
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'rijvan','juneja','2024-03-01','rijvan.juneja@esparkbizmail.com','9586404030','male',1,0,'2024-03-21 08:40:53'),(2,'shivam','patel','2024-03-01','shiavm@gmail.com','9586404030','male',1,0,'2024-03-21 08:53:09'),(3,'shivam','sfjh','2024-03-07','shivam@gmail.com','8585858585','male',0,0,'2024-03-21 08:54:05'),(4,'adswf','sfas','2024-03-06','shiadvm@gmail.com','1234569650','male',0,0,'2024-03-21 09:04:06'),(5,'adswf','sfas','2024-03-06','shweriadvm@gmail.com','1234569650','male',1,0,'2024-03-21 09:04:27'),(6,'adswf','sfas','2024-03-06','shweriaddvm@gmail.com','1234569650','male',0,0,'2024-03-21 09:46:55'),(7,'adswf','sfas','2024-03-06','shweriadddvm@gmail.com','1234569650','male',0,0,'2024-03-21 10:00:39');
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+LOCK TABLES `activation` WRITE;
+/*!40000 ALTER TABLE `activation` DISABLE KEYS */;
+INSERT INTO `activation` VALUES (1,1,'TSAA1NwMQPeJi45VaNWQ',1,1,'2024-03-21 10:56:44','2024-03-26 12:29:00'),(2,2,'wcCxNQUpYwWp2KLdfTEP',1,0,'2024-03-21 10:59:15','2024-03-21 16:33:21'),(3,3,'EB54F1kD4FZ48RvAUIpW',1,0,'2024-03-22 09:23:11','2024-03-22 18:06:31'),(4,4,'8fAwZvDddOHGzQwlWLIJ',1,0,'2024-03-22 12:30:39','2024-03-27 17:31:13'),(5,5,'jr3iUluZI4Hsr0AJvV7l',1,0,'2024-03-26 06:24:16','2024-03-26 11:54:16'),(6,6,'iC8zdkmSTqLJZWaFZEja',1,0,'2024-03-27 07:19:02','2024-03-27 12:50:05'),(7,8,'qU0dirbtMITpDjjXRz6P',1,0,'2024-03-28 09:35:16','2024-03-28 15:05:16'),(8,9,'vqX4usJu7On5cInDCWqc',1,0,'2024-03-28 11:33:57','2024-03-28 17:03:57'),(9,10,'VGzRWo6WHnsgqSbsbhZm',1,0,'2024-03-28 11:37:23','2024-03-28 17:19:11');
+/*!40000 ALTER TABLE `activation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-21 15:38:43
+-- Dump completed on 2024-03-28 18:53:24

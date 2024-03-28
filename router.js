@@ -138,6 +138,7 @@ router.get('/filtergrid',controller.authcheck,fieldsfilter.gridFilter);
 router.post('/filtergrid',fieldsfilter.gridFilter);
 
 
-router.get('/task',fieldsfilter.task);
+// ========================================= sorting and pagination ========================================//
+router.get('/task',controller.authcheck,fieldsfilter.task);
 
 module.exports = router;
