@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('./componants/head.ejs'); %>
+   <link rel="stylesheet" href="/crud_app_ajax/multidtep.css">
+  </head>
+  <body>
+
+    <%- include('./componants/header.ejs'); %>
+    <div class="container-c mt-5 con-steps">
+      <div class="row justify-content-around">
+        <div class="circle-box active-circle-box" id="tab-form-1">1</div>
+        <div class="circle-box" id="tab-form-2">2</div>
+        <div class="circle-box" id="tab-form-3">3</div>
+        <div class="circle-box" id="tab-form-4">4</div>
+      </div>
+      <div class="step-line"></div>
+    </div>
+    <div class="container-c form-container">
+        
+      <form action="" id="form-data">
+
+        <!-- Basic Details  -->
+        <div class="single-form active-form" id="form-1">
+            <h4 onclick="basic_validation()">basic Details</h4>
+            <table>
+                <tr>
+                    <td>First Name : <input type="hidden" name="emp_id" id="emp_id"> </td>
+                    <td>
+                        <input type="text" name="first_name" id="first_name"> <br>
+                        <span id="error_first_name"></span>
+                    </td>
+                    <td>Last Name :</td>
+                    <td>
+                        <input type="text" name="last_name" id="last_name"> <br>
+                        <span id="error_last_name"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Designation :</td>
+                    <td><input type="text" name="designation" id="designation"> <br>
+                        <span id="error_designation"></span>
+                    </td>
+                    <td>Email :</td>
+                    <td> <input type="email" name="email" id="email"> <br>
+                        <span id="error_email"></span>
+                    
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>Address 1 :</td>
+                    <td><textarea name="address1" id="address1" cols="30" rows="10"></textarea>
+                        <br>
+                        <span id="error_address1"></span>
+                    </td>
+                    <td>Address 2 :</td>
+                    <td><textarea name="address2" id="address2" cols="30" rows="10"></textarea> 
+                    
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Phone Number :</td>
+                    <td> <input type="text" name="mobile_number" id="mobile_number"> <br>
+                        <span id="error_mobile_number"></span>
+                        
+                    </td>
+                    <td>State : </td>
+                    <td>
+                        <select name="state" id="state" onchange="fetch_data('city')">
+                        
+                        </select> <br>
+                        <span id="error_state"></span>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>City :</td>
+                    <td>
+                        <select name="city" id="city">
+                            <option value="">select city</option>
+                        </select> <br>
+                        <span id="error_city"></span>
+
+                    </td>
+                    <td>Zip Code : </td>
+                    <td><input type="number" name="zip_code" id="zip_code" min="0">
+                    
+                        <br><span id="error_zip_code"></span>
+                    
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Gender :</td>
+                    <td>
+                        <input type="radio" name="gender" value="male" id="male" class="gender">Male 
+                        <input type="radio" name="gender" value="female" id="female" class="gender">Female <br>
+                        <span id="error_gender"></span>
+                    
+                    </td>
+                    <td>Relation Status :</td>
+                    <td>
+                        <select name="relationship_status" id="relationship_status">
+                            <option value="">select option ....</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                        </select> <br>
+                        <span id="error_relationship_status"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="">Date of Birth</td>
+                    <td colspan="2"><input type="date" name="dob" id="dob">
+                        <br><span id="error_dob"></span>
+                    
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Education Details  -->
+        <div class="single-form" id="form-2">
+            <h4>Education Details</h4>
+            <table>
+              <tr>
+                  <td><b>SSC Result</b></td>
+              </tr>
+              <tr>
+                  <td>Name Of board : </td>
+                  <td><input type="text" name="university[]" id="ssc_board">
+                      <br><span id="error_ssc_board"></span>
+                  </td>
+                  <td>Passing Year :</td>
+                  <td><input type="text" name="year[]" id="ssc_year">
+                      <br><span id="error_ssc_year"></span>
+                  </td>
+                  <td>Percentage :</td>
+                  <td><input type="number" name="percentage[]" id="ssc_percentage">
+                      <br><span id="error_ssc_percentage"></span>
+                  </td>
+                  <td> <input type="hidden" name="course[]" value="ssc"> </td>
+                  <td> </td>
+              </tr>
+
+              <tr>
+                  <td colspan="8">
+                      <hr>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td><b>HSC/Diploma Result</b></td>
+              </tr>
+              <tr>
+                  <td>Name Of board : </td>
+                  <td><input type="text" name="university[]" id="hsc_board">
+                      <br><span id="error_hsc_board"></span>
+                  </td>
+                  <td>Passing Year :</td>
+                  <td><input type="number" name="year[]" id="hsc_year">
+                      <br><span id="error_hsc_year"></span>
+                  </td>
+
+                  <td>Percentage :</td>
+                  <td><input type="number" name="percentage[]" id="hsc_percentage">
+                      <br><span id="error_hsc_percentage"></span>
+                  </td>
+                  <td><input type="hidden" name="course[]" value="hsc/diploma">  </td>
+                  <td> </td>
+              </tr>
+
+              <tr>
+                  <td colspan="8">
+                      <hr>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td><b>Bachelor Degree</b></td>
+              </tr>
+              <tr>
+                  <td>Course Name: </td>
+                  <td><input type="text" name="course[]" id="course_name">
+                      <br><span id="error_course_name"></span>
+                  </td>
+                  <td>University :</td>
+                  <td><input type="text" name="university[]" id="university">
+                      <br><span id="error_university"></span>
+                  </td>
+                  <td>Passing Year :</td>
+                  <td><input type="number" name="year[]" id="bachelor_year">
+                      <br><span id="error_bachelor_year"></span>
+                  </td>
+                  <td>Percentage :</td>
+                  <td><input type="number" name="percentage[]" id="bachelor_percentage">
+                      <br><span id="error_bachelor_percentage"></span>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td colspan="8">
+                      <hr>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td><b>Master Degree</b></td>
+              </tr>
+              <tr>
+                  <td>Course Name: </td>
+                  <td><input type="text" name="course[]" id="master_course"></td>
+                  <td>University :</td>
+                  <td><input type="text" name="university[]" id="master_university"></td>
+                  <td>Passing Year :</td>
+                  <td><input type="number" name="year[]" id="master_year"></td>
+                  <td>Percentage :</td>
+                  <td><input type="number" name="percentage[]" id="master_percentage"></td>
+              </tr>
+            </table>
+        </div>
+
+        <!-- Work Experience , Language Know & Technologies you Know  -->
+        <div class="single-form" id="form-3">
+
+          <h4>Work Experience</h4>
+          <div class="border">
+            <table id="exp_table">
+              <tr>
+                  <td>Company Name :</td>
+                  <td><input type="text" name="company_name[]" id="company_name1" onchange="disableinputExp(1)">
+                      <br><span id="error_company_name1"></span>
+                  </td>
+                  <td>Designation :</td>
+                  <td><input type="text" name="designationc[]" id="designation1">
+                      <br><span id="error_designation1"></span>
+                  </td>
+                  <td>From :</td>
+                  <td><input type="date" name="fromdate[]" id="fromdate1">
+                      <br><span id="error_fromdate1"></span>
+                  </td>
+                  <td>To :</td>
+                  <td><input type="date" name="todate[]" id="todate1">
+                      <br><span id="error_todate1"></span>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td>Company Name :</td>
+                  <td><input type="text" name="company_name[]" id="company_name2" onchange="disableinputExp(2)">
+                      <br><span id="error_company_name2"></span>
+                  </td>
+                  <td>Designation :</td>
+                  <td><input type="text" name="designationc[]" id="designation2">
+                      <br><span id="error_designation2"></span>
+                  </td>
+                  <td>From :</td>
+                  <td><input type="date" name="fromdate[]" id="fromdate2">
+                      <br><span id="error_fromdate2"></span>
+                  </td>
+                  <td>To :</td>
+                  <td><input type="date" name="todate[]" id="todate2">
+                      <br><span id="error_todate2"></span>
+                  </td>
+              </tr>
+            </table>
+            <button type="button" id="addExp" onclick="AddExp()">Add More</buuton>
+            <button type="button" id="addExp" onclick="RemoveExp()">Remove</buuton>
+          </div>
+
+          <!-- Language Know & Technologies you Know -->
+          <div class="row justify-content-around mt-5">
+            <div>
+              <h4>Language Know</h4>
+              <div class="border">
+                <table>
+                  <tr>
+                      <td><input type="checkbox" name="language[]" value="hindi" id="hindi" onchange="disableCheckbox(event)">Hindi</td>
+                      <td><input type="checkbox" name="hindi_level[]" value="read" id="hindi_read" disabled>read</td>
+                      <td><input type="checkbox" name="hindi_level[]" value="Write" id="hindi_write" disabled>Write</td>
+                      <td><input type="checkbox" name="hindi_level[]" value="Speak" id="hindi_speak" disabled>Speak</td>
+                  </tr>
+
+                  <tr>
+                      <td><input type="checkbox" name="language[]" value="english" id="english" onchange="disableCheckbox(event)">English</td>
+                      <td><input type="checkbox" name="english_level[]" value="read" id="english_read" disabled>read</td>
+                      <td><input type="checkbox" name="english_level[]" value="Write" id="english_write" disabled>Write</td>
+                      <td><input type="checkbox" name="english_level[]" value="Speak" id="english_speak" disabled>Speak</td>
+                  </tr>
+
+                  <tr>
+                      <td><input type="checkbox" name="language[]" value="gujarati" id="gujarati" onchange="disableCheckbox(event)">Gujarati</td>
+                      <td><input type="checkbox" name="gujarati_level[]" value="read" id="gujarati_read" disabled>read</td>
+                      <td><input type="checkbox" name="gujarati_level[]" value="Write" id="gujarati_write" disabled>Write</td>
+                      <td><input type="checkbox" name="gujarati_level[]" value="Speak" id="gujarati_speak" disabled>Speak</td>
+                  </tr>
+              </table>
+              </div>
+            </div>
+            <div>
+              <h4>Technologies Know</h4>
+              <div class="border">
+                <table>
+                  <tr>
+                      <td><input type="checkbox" name="technologies[]" value="php" id="php" onchange="disableCheckbox(event)">PHP</td>
+                      <td><input type="radio" name="php_level" value="beginer" id="php_beginer" disabled> Beginer</td>
+                      <td><input type="radio" name="php_level" value="mideator" id="php_mideator" disabled> Mideator</td>
+                      <td><input type="radio" name="php_level" value="expert" id="php_expert" disabled> Expert</td>
+                  </tr>
+
+                  <tr>
+                      <td><input type="checkbox" name="technologies[]" value="mysql" id="mysql" onchange="disableCheckbox(event)">Mysql</td>
+                      <td><input type="radio" name="mysql_level" value="beginer" id="mysql_beginer" disabled> Beginer</td>
+                      <td><input type="radio" name="mysql_level" value="mideator" id="mysql_mideator" disabled> Mideator</td>
+                      <td><input type="radio" name="mysql_level" value="expert" id="mysql_expert" disabled> Expert</td>
+                  </tr>
+
+                  <tr>
+                      <td><input type="checkbox" name="technologies[]" value="laravel" id="laravel" onchange="disableCheckbox(event)">laravel</td>
+                      <td><input type="radio" name="laravel_level" value="beginer" id="laravel_beginer" disabled> Beginer</td>
+                      <td><input type="radio" name="laravel_level" value="mideator" id="laravel_mideator" disabled> Mideator</td>
+                      <td><input type="radio" name="laravel_level" value="expert" id="laravel_expert" disabled> Expert</td>
+                  </tr>
+
+                  <tr>
+                      <td><input type="checkbox" name="technologies[]" value="oracle" id="oracle" onchange="disableCheckbox(event)">Oracle</td>
+                      <td><input type="radio" name="oracle_level" value="beginer" id="oracle_beginer" disabled> Beginer</td>
+                      <td><input type="radio" name="oracle_level" value="mideator" id="oracle_mideator" disabled> Mideator</td>
+                      <td><input type="radio" name="oracle_level" value="expert" id="oracle_expert" disabled> Expert</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="single-form" id="form-4">
+
+          <!-- Referance Contact -->
+          <div class="border">
+            <h4>Referance Contact</h4>
+                <table id="ref_table">
+                    <tr>
+                        <td>Name :</td>
+                        <td><input type="text" name="referance_name[]" id="ref_name_1" onchange="disableinputRef(1)">
+                        <br><span id="error_ref_name_1"></span></td>
+                        <td>Contact Number :</td>
+                        <td><input type="number" name="referance_contact_number[]" id="ref_contact_1">
+                        <br><span id="error_ref_contact_1"></span></td>
+                        <td>Relation :</td>
+                        <td><input type="text" name="referance_relation[]" id="ref_relation_1">
+                        <br><span id="error_ref_relation_1"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Name :</td>
+                        <td><input type="text" name="referance_name[]" id="ref_name_2" onchange="disableinputRef(2)">
+                        <br><span id="error_ref_name_2"></span></td>
+                        <td>Contact Number :</td>
+                        <td><input type="number" name="referance_contact_number[]" id="ref_contact_2">
+                        <br><span id="error_ref_contact_2"></span></td>
+                        <td>Relation :</td>
+                        <td><input type="text" name="referance_relation[]" id="ref_relation_2">
+                        <br><span id="error_ref_relation_2"></span></td>
+                    </tr>
+                </table>
+                <button type="button" id="addExp" onclick="AddRef()">Add More</button>
+                <button type="button" id="addExp" onclick="RemoveRef()">Remove</button>
+          </div>
+
+          <!-- Preferances -->
+          <div class="border">
+            <h4>Preferances</h4>
+            <table>
+              <tr>
+                  <td>Preferd Location :</td>
+                  <td>
+                      <select name="preferd_location" id="preferd-location">
+                          <option value="">select option</option>
+                          <option value="Ahemdabad">Ahemdabad</option>
+                          <option value="Bhavnagar">Bhavnagar</option>
+                          <option value="Delhi">Delhi</option>
+                      </select>
+                      <br> <span id="error_preferd-location"></span>
+                  </td>
+                  <td>Notice period :</td>
+                  <td><input type="text" name="notice_period" id="notice_period"></td>
+                  <td>Department : </td>
+                  <td>
+                      <select name="department" id="department">
+                          <option value="">select option</option>
+                          <option value="Development">Development</option>
+                          <option value="Design">Design</option>
+                          <option value="Marketing">Marketing</option>
+                      </select> <br>
+                      <span id="error_department"></span>
+                  </td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Expacted CTC :</td>
+                  <td><input type="number" name="expacted_ctc" id="expacted_ctc">
+                  <br><span id="error_expacted_ctc"></span></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Current CTC :</td>
+                  <td><input type="number" name="current_ctc" id="current_ctc">
+                      <br><span id="error_current_ctc"></span>
+                  </td>
+                  <td></td>
+                  <td></td>
+              </tr>
+            </table>
+          </div>
+
+          <p id="insert-btn"  onclick="insert('form-data')">submit p</p>
+          <div class="alert alert-success" role="alert" id="alert">
+            updated
+          </div>
+          <button type="button" id="update-btn" onclick="updateData('form-data')">Update</button>
+        </div>
+      </form>
+    </div>
+    <div class="container-c">
+      <button type="button" class="btn btn-primary" id="preBtn">previous</button>
+      <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+    </div>
+    <%- include('./componants/script.ejs'); %>
+   
+  </body>
+  <script src="/crud_app_ajax/stepform.js"></script>
+</html>

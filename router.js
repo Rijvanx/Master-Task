@@ -6,6 +6,11 @@ const controllergrid =  require('./controllers/TaskControllers/gridcontroller');
 const controllerdelimiter =  require('./controllers/TaskControllers/delimitercontroller');
 const jsonplaccontro = require('./controllers/TaskControllers/jsonplaccontro');
 const crudappcontroller = require('./controllers/TaskControllers/crudappcontroller');
+const crudajax = require('./controllers/TaskControllers/crud_app_ajax/controller');
+const insert = require('./controllers/TaskControllers/crud_app_ajax/api/insert');
+const fetch_stu_data = require('./controllers/TaskControllers/crud_app_ajax/api/fetch_stu_data');
+const fetch_single_data = require('./controllers/TaskControllers/crud_app_ajax/api/fetch_single_data');
+const update = require('./controllers/TaskControllers/crud_app_ajax/api/update');
 
 
 // const passport = require("passport");
@@ -104,5 +109,18 @@ router.get('/notfound', (req,res)=>{
 router.get('/task/edit', crudappcontroller.updateform);
 router.post('/task/api/update',crudappcontroller.update);
 
+
+// ========================================= crud app with AJAX task ========================================//
+
+router.get('/stepform', crudajax.multistepfrom);
+
+// // =========== API'S ==========// 
+router.get('/api/getstate', crudajax.getstate);
+router.get('/api/city', crudajax.getcity);
+router.get('/students', crudajax.students);
+router.post('/api/insertBasicData', insert.insertBasicData);
+router.get('/api/students', fetch_stu_data.fetchAllStudents);
+router.get('/api/fetch_single_data', fetch_single_data.fetch_single_data);
+router.post('/api/updateAllData', update.updateAllData);
 
 module.exports = router;

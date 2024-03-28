@@ -1,0 +1,109 @@
+.circle-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: mintcream;
+    width: 60px;
+    height: 60px;
+    border: 1px solid cornflowerblue;
+    /* padding: 20px; */
+    cursor: pointer;
+    font-size: 26px;
+    border-radius: 50%;
+}
+
+.con-steps{
+    position: relative;
+}
+
+.step-line{
+    border-radius: 5px;
+    width: 100%;
+    height: 10px;
+    background: cornflowerblue;
+    position: relative;
+    top: -35px;
+    z-index: -1;
+}
+
+.active-circle-box{
+    background: cornflowerblue;
+    color: #fff;
+}
+
+.completed-circle-box{
+    background: rgb(105, 237, 100);
+}
+
+
+/* form 1 */
+table {
+    /* margin : 20px;  */
+    padding: 20px;
+    /* border: 1px dotted rgba(49, 47, 47, 0.753); */
+}
+
+td {
+    padding: 5px;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+input {
+    margin-right: 30px;
+}
+
+input[type="radio"] {
+    margin: 5px;
+}
+
+input[type="checkbox"] {
+    margin: 10px;
+}
+
+span[id^=error_]{
+    color: red;
+    font-size: 15px;
+}
+
+.single-form{
+    border: 1px solid gray;
+    margin: 20px 0;
+    padding: 29px 40px;
+}
+
+.single-form{
+    display: none;
+}
+.active-form{
+    display: block;
+}
+
+.container-c{
+    width: 1301px !important;
+    margin: auto;
+}
+
+.border{
+    border: 1px solid gray;
+    padding: 20px 15px;
+    margin-bottom: 20px;
+}
+
+#update-btn{
+    display: none;
+    padding: 7px 18px;
+    border: none;
+    border-radius: 5px;
+    background: #0069d9;
+    color: #fff;
+    cursor: pointer;
+}
+
+#alert{
+    display: none;
+}
