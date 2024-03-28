@@ -38,5 +38,5 @@ Usage
     Explore other project features available only to logged-in users.
 
 Contributing
-
+[juneja.netlify.app](Rijvan Juenja)
 Contributions are welcome! Feel free to submit pull requests or report issues.
