@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('./componants/head.ejs'); %>
+    <style>
+
+table {
+    /* margin : 20px;  */
+    padding: 20px;
+    /* border: 1px dotted rgba(49, 47, 47, 0.753); */
+}
+
+td {
+    padding: 5px;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+input {
+    margin-right: 30px;
+}
+
+input[type="radio"] {
+    margin: 5px;
+}
+
+input[type="checkbox"] {
+    margin: 10px;
+}
+
+fieldset {
+    margin-top: 23px;
+    margin-left: 23px;
+    border: 1px solid gray;
+    padding: 20px;
+}
+
+legend {
+    display: unset !important;
+    width: auto !important;
+    margin-bottom: unset !important;
+    font-size: unset !important;
+    color: inherit;
+    white-space: normal;
+}
+
+span[id^=error_]{
+    color: red;
+    font-size: 15px;
+}
+body > form:nth-child(3) > fieldset:nth-child(7) {
+margin-right: 340px;
+}
+    </style>
+</head>
+
+<body>
+
+    <%- include('./componants/header.ejs'); %>
+
+        <center>
+            <h1>Job Application Form</h1>
+        </center>
+        <form action="/task/api/update" method="post" style="display: flex; flex-wrap: wrap;">
+            <input type="hidden" name="id" value="<%= data.id %>">
+            <input type="hidden" name="data" value="<%= JSON.stringify(data) %>">
+
+            
+            <%/* basic detail */%>
+            <fieldset>
+                <legend>Basic Detail</legend>
+                <table>
+                    <tr>
+                        <td>First Name :</td>
+                        <td>
+                            <input type="text" name="first_name" value="<%= data.first_name %>" id="first_name"> <br>
+                            <span id="error_first_name"></span>
+                        </td>
+                        <td>Last Name :</td>
+                        <td>
+                            <input type="text" name="last_name" value="<%= data.last_name %>" id="last_name"> <br>
+                            <span id="error_last_name"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Designation :</td>
+                        <td><input type="text" name="designation" value="<%= data.designation %>" id="designation"> <br>
+                            <span id="error_designation"></span>
+                        </td>
+                        <td>Email :</td>
+                        <td> <input type="email" name="email" value="<%= data.email %>" id="email"> <br>
+                            <span id="error_email"></span>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Address 1 :</td>
+                        <td><textarea name="address1" id="address1" cols="30" rows="10"><%= data.address1 %></textarea> <br>
+                            <span id="error_address1"></span>
+                        
+                        </td>
+                        <td>Address 2 :</td>
+                        <td><textarea name="address2" id="" cols="30" rows="10"><%= data.address2 %></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Phone Number :</td>
+                        <td> <input type="text" name="mobile_number" value="<%= data.mobile_number %>" id="mobile_number"> <br>
+                            <span id="error_mobile_number"></span>
+                            
+                        </td>
+                        <td>State : </td>
+                        <td>
+                            <select name="state" id="state">
+                                <option value="">select option ....</option>
+                                <option value="gujarat" <% if(data.state == "gujarat"){%> selected <%}%> >GUJARAT</option>
+                                <option value="up" <% if(data.state == "up"){%> selected <%}%> >UP</option>
+                                <option value="punjab" <% if(data.state == "punjab"){%> selected <%}%> >PUNJAB</option>
+                            </select> <br>
+                            <span id="error_state"></span>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>City :</td>
+                        <td>
+                            <select name="city" id="city">
+                                <option value="">select option ....</option>
+                                <option value="ahemdabad" <% if(data.city == "ahemdabad"){%> selected <%}%> >Ahemdabad</option>
+                                <option value="bhavnagar" <% if(data.city == "bhavnagar"){%> selected <%}%> >Bhavnagar</option>
+                                <option value="surat" <% if(data.city == "surat"){%> selected <%}%> >Surat</option>
+                            </select> <br>
+                            <span id="error_city"></span>
+
+                        </td>
+                        <td>Zip Code : </td>
+                        <td><input type="number" name="zip_code" value="<%= data.zip_code %>" id="zip_code" min="0">
+                        
+                            <br><span id="error_zip_code"></span>
+                        
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Gender :</td>
+                        <td>
+                            <input type="radio" name="gender" value="male" id="" class="gender" <% if(data.gender == "male"){%> checked <%}%> >Male 
+                            <input type="radio" name="gender" value="female" id="" class="gender" <% if(data.gender == "female"){%> checked <%}%> >Female <br>
+                            <span id="error_gender"></span>
+                        </td>
+                        <td>Relation Status :</td>
+                        <td>
+                            <select name="relationship_status" id="relationship_status">
+                                <option value="">select option ....</option>
+                                <option value="Single" <% if(data.relationship_status == "Single"){%> selected <%}%> >Single</option>
+                                <option value="Married" <% if(data.relationship_status == "Married"){%> selected <%}%> >Married</option>
+                            </select> <br>
+                            <span id="error_relationship_status"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="">Date of Birth</td>
+                        <td colspan="2"><input type="date" name="dob" id="dob" value="<%= data.dob %>">
+                            <br><span id="error_dob"></span>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <%/* Education Detail */%>
+            <fieldset>
+                <legend>Education Detail</legend>
+                <table>
+                    <tr>
+                        <td><b>SSC Result</b></td>
+                    </tr>
+                    <tr>
+                        <td>Name Of board : </td>
+                        <td><input type="text" name="university[]" id="ssc_board" value="<%= data.university[0] %>">
+                            <br><span id="error_ssc_board"></span>
+                        </td>
+                        <td>Passing Year :</td>
+                        <td><input type="text" name="year[]" id="ssc_year" value="<%= data.passing_year[0] %>">
+                            <br><span id="error_ssc_year"></span>
+                        </td>
+                        <td>Percentage :</td>
+                        <td><input type="number" name="percentage[]" id="ssc_percentage" value="<%= data.percentage[0] %>" >
+                            <br><span id="error_ssc_percentage"></span>
+                        </td>
+                        <td> <input type="hidden" name="course[]" value="ssc"> </td>
+                        <td> </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="8">
+                            <hr>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>HSC/Diploma Result</b></td>
+                    </tr>
+                    <tr>
+                        <td>Name Of board : </td>
+                        <td><input type="text" name="university[]" id="hsc_board" value="<%= data.university[1] %>">
+                            <br><span id="error_hsc_board"></span>
+                        </td>
+                        <td>Passing Year :</td>
+                        <td><input type="number" name="year[]" id="hsc_year" value="<%= data.passing_year[1] %>">
+                            <br><span id="error_hsc_year"></span>
+                        </td>
+                        <td>Percentage :</td>
+                        <td><input type="number" name="percentage[]" id="hsc_percentage" value="<%= data.percentage[1] %>" >
+                            <br><span id="error_hsc_percentage"></span>
+                        </td>
+                        <td><input type="hidden" name="course[]" value="hsc/diploma">  </td>
+                        <td> </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="8">
+                            <hr>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Bachelor Degree</b></td>
+                    </tr>
+                    <tr>
+                        <td>Course Name: </td>
+                        <td><input type="text" name="course[]" id="course_name" value="<%= data.course[2] %>">
+                            <br><span id="error_course_name"></span>
+                        </td>
+                        <td>University :</td>
+                        <td><input type="text" name="university[]" id="university" value="<%= data.university[2] %>">
+                            <br><span id="error_university"></span>
+                        </td>
+                        <td>Passing Year :</td>
+                        <td><input type="number" name="year[]" id="bachelor_year" value="<%= data.passing_year[2] %>">
+                            <br><span id="error_bachelor_year"></span>
+                        </td>
+                        <td>Percentage :</td>
+                        <td><input type="number" name="percentage[]" id="bachelor_percentage" value="<%= data.percentage[2] %>" >
+                            <br><span id="error_bachelor_percentage"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="8">
+                            <hr>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Master Degree</b></td>
+                    </tr>
+                    <tr>
+                        <td>Course Name: </td>
+                        <td><input type="text" name="course[]" id="" value="<%= data.course[3] %>"></td>
+                        <td>University :</td>
+                        <td><input type="text" name="university[]" id="" value="<%= data.university[3] %>"></td>
+                        <td>Passing Year :</td>
+                        <td><input type="number" name="year[]" id="" value="<%= data.passing_year[3] %>"></td>
+                        <td>Percentage :</td>
+                        <td><input type="number" name="percentage[]" id="" value="<%= data.percentage[3] %>" ></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <%/* Work Experience Detail */%>
+            <fieldset>
+                <legend>Work Experience</legend>
+                <table id="exp_table">
+                    <% for(let i=0; i<data.company_name.length; i++ ){ %>
+                    <tr>
+                        <td>Company Name :</td>
+                        <td><input type="text" name="company_name[]" id="company_name<%= i+1 %>" value="<%= data.company_name[i] %>" onchange="disableinputExp('<%= i+1 %>')">
+                            <br><span id="error_company_name<%= i+1 %>"></span>
+                        </td>
+                        <td>Designation :</td>
+                        <td><input type="text" name="designationc[]" value="<%= data.designationc[i] %>" id="designation<%= i+1 %>">
+                            <br><span id="error_designation<%= i+1 %>"></span>
+                        </td>
+                        <td>From :</td>
+                        <td><input type="date" name="fromdate[]" value="<%= data.fromdate[i] %>" id="fromdate<%= i+1 %>">
+                            <br><span id="error_fromdate<%= i+1 %>"></span>
+                        </td>
+                        <td>To :</td>
+                        <td><input type="date" name="todate[]" value="<%= data.todate[i] %>" id="todate<%= i+1 %>">
+                            <br><span id="error_todate<%= i+1 %>"></span>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                </table>
+                <buuton id="addExp" onclick="AddExp()">Add More</buuton>
+                <buuton id="addExp" onclick="RemoveExp()">Remove</buuton>
+
+            </fieldset>
+
+            <% /* Language Know */%>
+            <fieldset>
+                <legend>Language Know</legend>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" name="language[]" value="hindi" id="hindi" onchange="disableCheckbox(event)" <% if(data.hindi.length !=0){ %> checked <%}%> >Hindi</td>
+                        <td><input type="checkbox" name="hindi_level[]" value="read" id="hindi_read" <% if(data.hindi.includes('read')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >read</td>
+                        <td><input type="checkbox" name="hindi_level[]" value="Write" id="hindi_write" <% if(data.hindi.includes('Write')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >Write</td>
+                        <td><input type="checkbox" name="hindi_level[]" value="Speak" id="hindi_speak" <% if(data.hindi.includes('Speak')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >Speak</td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="language[]" value="english" id="english" onchange="disableCheckbox(event)" <% if(data.english.length !=0){ %> checked <%}%> >English</td>
+                        <td><input type="checkbox" name="english_level[]" value="read" id="english_read" <% if(data.english.includes('read')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >read</td>
+                        <td><input type="checkbox" name="english_level[]" value="Write" id="english_write" <% if(data.english.includes('Write')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >Write</td>
+                        <td><input type="checkbox" name="english_level[]" value="Speak" id="english_speak" <% if(data.english.includes('Speak')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >Speak</td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="language[]" value="gujarati" id="gujarati" onchange="disableCheckbox(event)" <% if(data.gujarati.length !=0){ %> checked <%}%> >Gujarati</td>
+                        <td><input type="checkbox" name="gujarati_level[]" value="read" id="gujarati_read" <% if(data.gujarati.includes('read')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >read</td>
+                        <td><input type="checkbox" name="gujarati_level[]" value="Write" id="gujarati_write" <% if(data.gujarati.includes('Write')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >Write</td>
+                        <td><input type="checkbox" name="gujarati_level[]" value="Speak" id="gujarati_speak" <% if(data.gujarati.includes('Speak')){ %> checked <%}%>  <% if(data.hindi.length ==0){ %> disabled <%}%>  >Speak</td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <%/* Technologies you Know */%>
+            <fieldset>
+                <legend>Technologies you Know</legend>
+                <% for(let i=0; i< data.technologies.length; i++){
+                    if(data.technologies[i].tech_name == "php"){
+                        var php = data.technologies[i].tech_level;
+                    } else if (data.technologies[i].tech_name == "mysql"){
+                        var mysql = data.technologies[i].tech_level;
+                    } else if (data.technologies[i].tech_name == "laravel"){
+                        var laravel = data.technologies[i].tech_level;
+                    } else if (data.technologies[i].tech_name == "oracle"){
+                        var oracle = data.technologies[i].tech_level;
+                    }
+                }
+                %>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" name="technologies[]" value="php" id="php" <% if(php){ %> checked <%}%> onchange="disableCheckbox(event)">PHP</td>
+                        <td><input type="radio" name="php_level" value="beginer" id="php_beginer" <% if(!php){ %> disabled <%}%> <% if(php == "beginer"){ %> checked <%}%> > Beginer</td>
+                        <td><input type="radio" name="php_level" value="mideator" id="php_mideator" <% if(!php){ %> disabled <%}%> <% if(php == "mideator"){ %> checked <%}%> > Mideator</td>
+                        <td><input type="radio" name="php_level" value="expert" id="php_expert" <% if(!php){ %> disabled <%}%> <% if(php == "expert"){ %> checked <%}%> > Expert</td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="technologies[]" value="mysql" id="mysql" <% if(mysql){ %> checked <%}%> onchange="disableCheckbox(event)">Mysql</td>
+                        <td><input type="radio" name="mysql_level" value="beginer" id="mysql_beginer" <% if(!mysql){ %> disabled <%}%> <% if(mysql == "beginer"){ %> checked <%}%> > Beginer</td>
+                        <td><input type="radio" name="mysql_level" value="mideator" id="mysql_mideator" <% if(!mysql){ %> disabled <%}%> <% if(mysql == "mideator"){ %> checked <%}%> > Mideator</td>
+                        <td><input type="radio" name="mysql_level" value="expert" id="mysql_expert" <% if(!mysql){ %> disabled <%}%> <% if(mysql == "expert"){ %> checked <%}%> > Expert</td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="technologies[]" value="laravel" id="laravel" <% if(laravel){ %> checked <%}%> onchange="disableCheckbox(event)">laravel</td>
+                        <td><input type="radio" name="laravel_level" value="beginer" id="laravel_beginer" <% if(!laravel){ %> disabled <%}%> <% if(laravel == "beginer"){ %> checked <%}%> > Beginer</td>
+                        <td><input type="radio" name="laravel_level" value="mideator" id="laravel_mideator" <% if(!laravel){ %> disabled <%}%> <% if(laravel == "mideator"){ %> checked <%}%> > Mideator</td>
+                        <td><input type="radio" name="laravel_level" value="expert" id="laravel_expert" <% if(!laravel){ %> disabled <%}%> <% if(laravel == "expert"){ %> checked <%}%> > Expert</td>
+
+                    <tr>
+                        <td><input type="checkbox" name="technologies[]" value="oracle" id="oracle" <% if(oracle){ %> checked <%}%> onchange="disableCheckbox(event)">Oracle</td>
+                        <td><input type="radio" name="oracle_level" value="beginer" id="oracle_beginer" <% if(!oracle){ %> disabled <%}%> <% if(oracle == "beginer"){ %> checked <%}%> > Beginer</td>
+                        <td><input type="radio" name="oracle_level" value="mideator" id="oracle_mideator" <% if(!oracle){ %> disabled <%}%> <% if(oracle == "mideator"){ %> checked <%}%> > Mideator</td>
+                        <td><input type="radio" name="oracle_level" value="expert" id="oracle_expert" <% if(!oracle){ %> disabled <%}%> <% if(oracle == "expert"){ %> checked <%}%> > Expert</td>
+                    </tr>
+                </table>
+
+            </fieldset>
+
+            <%/* Referance Contact */%>
+            <fieldset>
+                <legend>Referance Contact</legend>
+                <table id="ref_table">
+                    <% for(let j=0; j<data.referance.length; j++) { %>
+                    <tr>
+                        <td>Name :</td>
+                        <td><input type="text" name="referance_name[]" id="ref_name_<%= j+1 %>" value="<%= data.referance[j].name %>" onchange="disableinputRef('<%= j+1 %>')">
+                        <br><span id="error_ref_name_<%= j+1 %>"></span></td>
+                        <td>Contact Number :</td>
+                        <td><input type="number" name="referance_contact_number[]" value="<%= data.referance[j].contact_number %>" id="ref_contact_<%= j+1 %>">
+                        <br><span id="error_ref_contact_<%= j+1 %>"></span></td>
+                        <td>Relation :</td>
+                        <td><input type="text" name="referance_relation[]" value="<%= data.referance[j].relation %>" id="ref_relation_<%= j+1 %>">
+                        <br><span id="error_ref_relation_<%= j+1 %>"></span></td>
+                    </tr>
+
+                    <%}%>
+                </table>
+                <buuton id="addExp" onclick="AddRef()">Add More</buuton>
+                <buuton id="addExp" onclick="RemoveRef()">Remove</buuton>
+            </fieldset>
+
+            <%/* Preferances */%>
+            <fieldset>
+                <legend>Preferances</legend>
+                <table>
+                    <tr>
+                        <td>Preferd Location :</td>
+                        <td>
+                            <select name="preferd_location" id="preferd-location">
+                                <option value="">select option</option>
+                                <option value="Ahemdabad" <% if(data.preferd_location == "Ahemdabad"){%> selected <%}%> >Ahemdabad</option>
+                                <option value="Bhavnagar" <% if(data.preferd_location == "Bhavnagar"){%> selected <%}%> >Bhavnagar</option>
+                                <option value="Delhi" <% if(data.preferd_location == "Delhi"){%> selected <%}%> >Delhi</option>
+                            </select>
+                            <br> <span id="error_preferd-location"></span>
+                        </td>
+                        <td>Notice period :</td>
+                        <td><input type="text" name="notice_period" id="" value="<%= data.notice_period %>"></td>
+                        <td>Department : </td>
+                        <td>
+                            <select name="department" id="department">
+                                <option value="">select option</option>
+                                <option value="Development" <% if(data.department == "Development"){%> selected <%}%> >Development</option>
+                                <option value="Design" <% if(data.department == "Design"){%> selected <%}%> >Design</option>
+                                <option value="Marketing" <% if(data.department == "Marketing"){%> selected <%}%> >Marketing</option>
+                            </select> <br>
+                            <span id="error_department"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Expacted CTC :</td>
+                        <td><input type="number" name="expacted_ctc" id="expacted_ctc" value="<%= data.expacted_ctc %>">
+                        <br><span id="error_expacted_ctc"></span></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Current CTC :</td>
+                        <td><input type="number" name="current_ctc" id="current_ctc" value="<%= data.current_ctc %>">
+                            <br><span id="error_current_ctc"></span>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </fieldset>
+            
+            <input type="submit" value="submit" style="font-size: 20px; padding: 5px 22px; margin: 30px 1588px;">
+        </form>
+
+
+        <%- include('./componants/script.ejs'); %>
+
+</body>
+
+
+<script src="/crud_app/script.js"></script>
+
+</html>

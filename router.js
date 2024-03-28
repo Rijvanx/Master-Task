@@ -5,6 +5,8 @@ const registation = require('./controllers/api/registation');
 const controllergrid =  require('./controllers/TaskControllers/gridcontroller');
 const controllerdelimiter =  require('./controllers/TaskControllers/delimitercontroller');
 const jsonplaccontro = require('./controllers/TaskControllers/jsonplaccontro');
+const crudappcontroller = require('./controllers/TaskControllers/crudappcontroller');
+
 
 // const passport = require("passport");
 // const initializingPassport = require("./controllers/passportConfig");
@@ -82,6 +84,25 @@ router.post('/task/delimiter/filtergrid',controllerdelimiter.gridFilter);
 router.get('/jsonplaceholder/task/posts', jsonplaccontro.posts);
 router.get('/jsonplaceholder/task/details', jsonplaccontro.moredetails);
 router.get('/jsonplaceholder/task/comment', jsonplaccontro.comment);
+
+// ========================================== Time zon task ========================================//
+
+router.get('/task/timezone',(req,res)=>{
+    res.render('pages/TimezonTask/timezone')
+})
+
+
+// ========================================= crud app task ========================================//
+
+router.get('/task/form', crudappcontroller.form);
+router.post('/task/form', crudappcontroller.form);
+
+router.get('/notfound', (req,res)=>{
+    res.render("pages/crud_app/notfound")
+});
+
+router.get('/task/edit', crudappcontroller.updateform);
+router.post('/task/api/update',crudappcontroller.update);
 
 
 module.exports = router;

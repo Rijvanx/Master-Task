@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('./componants/head.ejs'); %>
+</head>
+
+<body>
+
+    <%- include('./componants/header.ejs'); %>
+
+        <div class="container mt-5">
+            <h2 class="text-center text-primary mb-5">Time Zone</h2>
+            <form action="" class="col-md-9 ml-auto mr-auto">
+                <div class="row mb-4">
+                    <div class="time-div">
+                        <div class="form-group ">
+                            <label for="fromtime">Current Time</label>
+                            <input type="text" class="form-control" name="fromtime" id="fromtime">
+                        </div>
+                        <div class="form-group ">
+                            <label for="fromtimezone">Time Zone</label>
+                            <select id="fromtimezone" class="form-control" name="fromtimezone">
+                                <option selected>Choose...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="time-div">
+                        <div class="form-group ">
+                            <label for="totime">converted Time</label>
+                            <input type="text" class="form-control" name="totime" id="totime" disabled>
+                        </div>
+                        <div class="form-group ">
+                            <label for="totimezone">Time Zone</label>
+                            <select id="totimezone" class="form-control" name="totimezone">
+                                <option selected>Choose...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <%- include('./componants/script.ejs'); %>
+
+</body>
+<script>
+
+    function LoadTimeZone() {
+        var aryIanaTimeZones = Intl.supportedValuesOf('timeZone');
+
+        const fromtimezone = document.getElementById("fromtimezone");
+        const totimezone = document.getElementById("totimezone");
+
+
+        let str = '<option value="">select time zone</option>'
+        aryIanaTimeZones.forEach(element => {
+            str = str + `<option value="${element}">${element}</option>`
+        });
+
+        fromtimezone.innerHTML = str;
+        totimezone.innerHTML = str;
+
+    }
+    LoadTimeZone();
+
+    function GetNowTime(timeZone) {
+
+        let date = new Date;
+        return date.toLocaleString("en-US", { timeZone: `${timeZone}` });
+
+    }
+
+    function GetConvertTime(time, fromtimezone, totimezone) {
+
+        let date = new Date(time);
+        console.log(date);
+        let newdate = date.toLocaleString("en-US", { timeZone: `${totimezone}` })
+        return newdate;
+
+    }
+
+
+    const fromtimezone = document.getElementById("fromtimezone");
+
+    fromtimezone.addEventListener('change', (event) => {
+        let fromtime = document.getElementById("fromtime");
+        if (event.target.value != "") {
+            fromtime.value = GetNowTime(event.target.value);
+        } else {
+            fromtime.value = "";
+        }
+    });
+
+    const totimezone = document.getElementById("totimezone");
+
+    totimezone.addEventListener('change', (event) => {
+        let totime = document.getElementById("totime");
+        let fromtime = document.getElementById("fromtime");
+        let fromtimezonev = document.getElementById("fromtimezone");
+        let totimezonev = document.getElementById("totimezone");
+
+        if (event.target.value != "") {
+            totime.value = GetConvertTime(fromtime.value, fromtimezonev.value, totimezonev.value);
+        } else {
+            totime.value = "";
+        }
+    });
+</script>
+
+</html>
