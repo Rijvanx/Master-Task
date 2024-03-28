@@ -11,6 +11,7 @@ const insert = require('./controllers/TaskControllers/crud_app_ajax/api/insert')
 const fetch_stu_data = require('./controllers/TaskControllers/crud_app_ajax/api/fetch_stu_data');
 const fetch_single_data = require('./controllers/TaskControllers/crud_app_ajax/api/fetch_single_data');
 const update = require('./controllers/TaskControllers/crud_app_ajax/api/update');
+const examresult = require('./controllers/TaskControllers/examresultcontroller');
 
 
 // const passport = require("passport");
@@ -122,5 +123,11 @@ router.post('/api/insertBasicData', insert.insertBasicData);
 router.get('/api/students', fetch_stu_data.fetchAllStudents);
 router.get('/api/fetch_single_data', fetch_single_data.fetch_single_data);
 router.post('/api/updateAllData', update.updateAllData);
+
+// ========================================= Exam Result task ========================================//
+
+router.get("/getExamResult", examresult.getResult);
+router.get("/getMoreInfoOfResult", examresult.getMoreInfo);
+
 
 module.exports = router;

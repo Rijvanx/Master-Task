@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Details</title>
+    <style>
+        .container {
+            padding: 50px 0;
+            margin: 0 auto;
+            width: 70%;
+        }
+
+
+        th {
+            background-color: #5D8BF9;
+        }
+
+        tr {
+            background-color: #BFE7FF;
+            
+        }
+
+       
+
+        .row1,
+        td {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        td,
+        th {
+            padding: 15px;
+        }
+
+        h4{
+            color: green;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="row1">
+            <h2>
+                Hello <%= data[0].first_name + " " + data[0].last_name %>
+            </h2>
+            <h4 id="isPass">
+
+            </h4>
+        </div>
+    </header>
+    <section>
+        <% var fullTotal=0; var fullObtain=0; %>
+            <div class="container">
+                <div class="row2">
+                    <h2>Prelims : </h2>
+                    <table>
+                        <tr>
+                            <th rowspan="2">id</th>
+                            <th rowspan="2">subject name</th>
+                            <th colspan="2">practical exam</th>
+                            <th colspan="2">theory exam</th>
+                            <th colspan="2">total marks</th>
+                        </tr>
+                        <tr>
+                            <th>total marks</th>
+                            <th>obtain marks</th>
+                            <th>total marks</th>
+                            <th>obtain marks</th>
+                            <th>total subject marks</th>
+                            <th>obtain subject marks</th>
+                        </tr>
+
+
+
+                        <% data.forEach(info=> { %>
+                            <tr>
+                                <td>
+                                    <%= info.sub_id %>
+                                </td>
+                                <td>
+                                    <%= info.name %>
+                                </td>
+                                <td>
+                                    <%= info.prelim_practical_total_marks %>
+                                </td>
+                                <td>
+                                    <%= info.prelim_practical_marks %>
+                                </td>
+                                <td>
+                                    <%= info.prelim_theory_total_marks %>
+                                </td>
+                                <td>
+                                    <%= info.prelim_theory_marks %>
+                                </td>
+                                <% let total=info.prelim_practical_total_marks + info.prelim_theory_total_marks %>
+                                    <% let obtain=info.prelim_practical_marks + info.prelim_theory_marks %>
+                                        <% fullTotal=fullTotal + total; fullObtain=fullObtain + obtain %>
+                                            <td>
+                                                <%= total %>
+                                            </td>
+                                            <td>
+                                                <%= obtain %>
+                                            </td>
+                            </tr>
+                            <% }) %>
+
+                                <tr>
+                                    <td colspan="6">Total</td>
+                                    <td>
+                                        <%= fullTotal %>
+                                    </td>
+                                    <td>
+                                        <%= fullObtain %>
+                                    </td>
+                                </tr>
+
+                    </table>
+                </div>
+
+            </div>
+    </section>
+
+    <section>
+        <% fullTotal=0; fullObtain=0; %>
+            <div class="container">
+                <div class="row2">
+                    <h2>Terminal : </h2>
+                    <table>
+                        <tr>
+                            <th rowspan="2">id</th>
+                            <th rowspan="2">subject name</th>
+                            <th colspan="2">practical exam</th>
+                            <th colspan="2">theory exam</th>
+                            <th colspan="2">total marks</th>
+                        </tr>
+                        <tr>
+                            <th>total marks</th>
+                            <th>obtain marks</th>
+                            <th>total marks</th>
+                            <th>obtain marks</th>
+                            <th>total subject marks</th>
+                            <th>obtain subject marks</th>
+                        </tr>
+
+
+
+                        <% data.forEach(info=> { %>
+                            <tr>
+                                <td>
+                                    <%= info.sub_id %>
+                                </td>
+                                <td>
+                                    <%= info.name %>
+                                </td>
+                                <td>
+                                    <%= info.terminal_practical_total_marks %>
+                                </td>
+                                <td>
+                                    <%= info.terminal_practical_marks %>
+                                </td>
+                                <td>
+                                    <%= info.terminal_theory_total_marks %>
+                                </td>
+                                <td>
+                                    <%= info.terminal_theory_marks %>
+                                </td>
+                                <% let total=info.terminal_practical_total_marks + info.terminal_theory_total_marks %>
+                                    <% let obtain=info.terminal_practical_marks + info.terminal_theory_marks %>
+                                        <% fullTotal=fullTotal + total; fullObtain=fullObtain + obtain %>
+                                            <td>
+                                                <%= total %>
+                                            </td>
+                                            <td>
+                                                <%= obtain %>
+                                            </td>
+                            </tr>
+                            <% }) %>
+
+                                <tr>
+                                    <td colspan="6">Total</td>
+                                    <td>
+                                        <%= fullTotal %>
+                                    </td>
+                                    <td>
+                                        <%= fullObtain %>
+                                    </td>
+                                </tr>
+
+                    </table>
+                </div>
+
+            </div>
+    </section>
+
+    <section>
+        <% fullTotal=0; fullObtain=0; %>
+            <div class="container">
+                <div class="row2">
+                    <h2>Final : </h2>
+                    <table>
+                        <tr>
+                            <th rowspan="2">id</th>
+                            <th rowspan="2">subject name</th>
+                            <th colspan="2">practical exam</th>
+                            <th colspan="2">theory exam</th>
+                            <th colspan="2">total marks</th>
+                        </tr>
+                        <tr>
+                            <th>total marks</th>
+                            <th>obtain marks</th>
+                            <th>total marks</th>
+                            <th>obtain marks</th>
+                            <th>total subject marks</th>
+                            <th>obtain subject marks</th>
+                        </tr>
+
+
+
+                        <% data.forEach(info=> { %>
+                            <tr>
+                                <td>
+                                    <%= info.sub_id %>
+                                </td>
+                                <td>
+                                    <%= info.name %>
+                                </td>
+                                <td>
+                                    <%= info.final_practical_total_marks %>
+                                </td>
+                                <td>
+                                    <%= info.final_practical_marks %>
+                                </td>
+                                <td>
+                                    <%= info.final_theory_total_marks %>
+                                </td>
+                                <td>
+                                    <%= info.final_theory_marks %>
+                                </td>
+                                <% let total=info.final_practical_total_marks + info.final_theory_total_marks %>
+                                    <% let obtain=info.final_practical_marks + info.final_theory_marks %>
+                                        <% fullTotal=fullTotal + total; fullObtain=fullObtain + obtain %>
+                                            <td>
+                                                <%= total %>
+                                            </td>
+                                            <td>
+                                                <%= obtain %>
+                                            </td>
+                            </tr>
+                            <% }) %>
+
+
+                                <tr>
+                                    <td colspan="6">Total</td>
+                                    <td>
+                                        <%= fullTotal %>
+                                    </td>
+                                    <td id="obtain">
+                                        <%= fullObtain %>
+                                    </td>
+                                </tr>
+
+                    </table>
+                </div>
+
+            </div>
+    </section>
+    <script>
+
+    </script>
+</body>
+
+</html>
