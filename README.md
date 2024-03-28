@@ -19,13 +19,13 @@ Step 3: Install Dependencies
 
 Run the following command to install all required packages:
 
-npm install
+    npm install
 
 Step 4: Start the Server
 
 Start the server using the following command:
 
-nodemon server.js
+    nodemon server.js
 
 Access the Application
 
