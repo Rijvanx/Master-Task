@@ -87,3 +87,108 @@ exports.gridFilter = (req,res) => {
     })
 
 }
+
+exports.task = (req,res) =>{
+    var sql;
+    // if(req.query.squery) {                                             //else check query pass on url get method 
+    //     checkquery = req.query.squery.toString().toLowerCase();
+    // } else {
+    //     res.render("pages/task01march", {                                            // query not in url or body then sent enter a query
+    //         sql : checkquery,
+    //         datashow : false,
+    //         err : "Please Enter query"
+    //     });
+    // }
+
+    var orderby,order;
+
+    if(req.query.orderby){
+        orderby = req.query.orderby;
+    } else {
+        orderby = "s_id";
+    }
+
+    if(req.query.order){
+        order = req.query.order;
+    } else {
+        order = "ASC";
+    }
+
+    var year,month,last_date;;
+    if(req.query.year){
+        year = req.query.year;
+    } else {
+        year = "2000";
+    }
+
+    if(req.query.month){
+        month = req.query.month;
+    } else {
+        month = "01";
+    }
+
+    if(req.query.date){
+        last_date = req.query.date;
+    } else {
+        last_date = "28";
+    }
+    var d = new Date(2008, month, 0);
+    console.log(d.toString()); //
+    
+    sql = `select * from student WHERE (dob BETWEEN '${year}-${month}-01' AND '${year}-${month}-${last_date}')`;
+        
+        let pagenum = req.query.n;
+        if (!req.query.n || req.query.n < 1) {
+            pagenum = 1;
+        }             
+        var n = pagenum - 1;
+        con.query(sql, (err, rows) => {
+            if (!err) {
+                totalRecords = rows.length;
+                let start = numPerRecord * n;
+                let lastpage = Math.ceil(totalRecords / numPerRecord);
+                // console.log(rows);
+                if(rows.length > 0){
+
+                    // let fields=  Object.keys(rows[0]);
+                    let sql2 = sql.replace(";" , "") +  ` order by ${orderby} ${order} limit ${start},${numPerRecord}`;
+                    // console.log(sql2);
+
+                    con.query(sql2,(err2,result,fields) =>{
+                        if(!err2){
+                            // console.log(fields);
+                            res.render("pages/allfieldFilter/task01march", {
+                                sql : sql,
+                                data : result,
+                                fields : fields,
+                                lastpage : lastpage,
+                                pagenum : pagenum,
+                                order : order,
+                                orderby : orderby,
+                                year : year,
+                                month : month,
+                                datashow : true,
+                            });
+                        }else{
+                        console.log("error in fetch data sql2",err2)
+                        }
+                    })
+                } else {
+                    res.render("pages/allfieldFilter/task01march", {
+                        sql : sql,
+                        datashow : false,
+                        err : "No records Founds"
+                    });
+                }
+            } else {
+                console.log("error in fetch data sql",err)
+                datashow = false;
+                res.render("pages/allfieldFilter/task01march", {
+                    sql : sql,
+                    datashow : false,
+                    err : err
+                });
+            }
+        })
+    // }
+}

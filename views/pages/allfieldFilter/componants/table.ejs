@@ -1,0 +1,43 @@
+<table class="table table-bordered grid-table-container">
+    <thead>
+        <tr>
+
+        <% fields.forEach(entry => { %>
+            <th scope="col">
+                <% if(order != "DESC"){ %>
+                    <a href="/task?n=<%= pagenum %>&orderby=<%= entry.name %>&order=DESC&year=<%=year %>&month=<%=month %>" > <%= entry.name.replace("_", " ") %> </a>
+                <% } else { %>
+                    <a href="/task?n=<%= pagenum %>&orderby=<%= entry.name %>&year=<%=year %>&month=<%=month %>" > <%= entry.name.replace("_", " ") %> </a>
+                <% } %>
+                <div class="arrow-contain">
+                    <% if(orderby == entry.name) {   %>
+                        
+                        <a href="/task?n=<%= pagenum %>&orderby=<%= entry.name %>&order=DESC&year=<%=year %>&month=<%=month %>" <% if(order == "DESC"){ %> style="opacity: 1;"  <% } %>>&uarr;</a>
+                        <a href="/task?n=<%= pagenum %>&orderby=<%= entry.name %>&year=<%=year %>&month=<%=month %>" <% if(order != "DESC"){ %> style="opacity: 1;"  <% } %>>&darr;</a>
+
+                    <% } else { %>
+                        <a href="/task?n=<%= pagenum %>&orderby=<%= entry.name %>&order=DESC&year=<%=year %>&month=<%=month %>">&uarr;</a>
+                        <a href="/task?n=<%= pagenum %>&orderby=<%= entry.name %>&year=<%=year %>&month=<%=month %>">&darr;</a>
+                    <% } %>
+                </div>
+            </th>
+        <% }) %>   
+        
+        </tr>
+    </thead>
+
+    <tbody>
+        <% data.forEach(entry => { %>
+            <tr>
+                <% fields.forEach(f => { %>
+                    <% if(f.type == 10) { %>
+                        <td><%= (entry[f.name]).toDateString() %></td>
+                    <% } else { %>
+                    <td><%= entry[f.name] %></td>
+                    <% } %>
+
+                <% }) %>              
+            </tr>
+        <% }) %>  
+    </tbody>
+</table>

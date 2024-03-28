@@ -2,6 +2,11 @@
 <html lang="en">
   <head>
     <%- include('../componants/head.ejs'); %>
+    <style>
+      tr:nth-child(even) {
+        background: #80808024;
+}
+    </style>
   </head>
   <body>
 
@@ -10,7 +15,7 @@
     <div class="container mt-4">
       <table class="table table-bordered mt-5">
         <thead>
-          <tr>
+          <tr style="background: lightgray;">
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Link</th>
@@ -99,11 +104,16 @@
             <td>Exam Result</td>
             <td><a href="/getExamResult" target="_blank">/getExamResult</a></td>
           </tr>
-
           <tr>
             <th scope="row">15</th>
             <td>All Filed Filter</td>
             <td><a href="/filtergrid" target="_blank">/filtergrid</a></td>
+          </tr>
+
+          <tr>
+            <th scope="row">16</th>
+            <td>All Fsorting and Month wise show dob</td>
+            <td><a href="/task" target="_blank">/task</a></td>
           </tr>
         </tbody>
       </table>

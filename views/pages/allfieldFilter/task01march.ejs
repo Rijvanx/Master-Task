@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('./componants/head.ejs'); %>
+    <style>
+        .arrow-contain a{
+            color: black;
+            text-decoration: none;
+            opacity: 0.3;
+        }
+        .arrow-contain a:hover{
+            color: black;
+            text-decoration: none;
+            opacity: 1;
+        }
+        .arrow-contain{
+            margin: 2px 5px;
+            /* display: flex; */
+        }
+        a{
+          color: #000000;
+          text-decoration: none;
+        }
+    </style>
+  </head>
+  <body>
+
+    <%- include('./componants/header.ejs'); %>
+
+      <%/* =====  check query run or not ======= */%>
+        <% if(datashow == false){ %>
+            <div class="grid-table-container">
+              <p class="error"><%= err %></p>
+            </div>
+        <% } else { %>
+
+            <div class="dropdown" style="margin-top: 58px; margin-left: 1600px;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <% if(month == 01){ %>
+                    January
+                  <% } else if(month == 02) {%>
+                    February
+                  <% } else if(month == 03) {%>
+                    March
+                  <% } else if(month == 04) {%>
+                    April
+                  <% } else if(month == 05) {%>
+                    May
+                  <% } else if(month == 06) {%> 
+                    June
+                  <% } else if(month == 07) {%>
+                    July
+                    <% } %>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 01 %>">January</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 02 %>">February</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 03 %>">March</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 04 %>">April</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 05 %>">May</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 06 %>">June</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 07 %>">July</a></li> 
+                </ul>
+              </div>
+
+            <%- include('./componants/table.ejs'); %>
+            <%- include('./componants/taskpagi.ejs'); %>
+        <% } %>
+
+
+    <%/* =====  boostarap script cdn ======= */%>
+    <%- include('./componants/script.ejs'); %>
+   
+  </body>
+ 
+</html>

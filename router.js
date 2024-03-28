@@ -137,4 +137,7 @@ router.get("/getMoreInfoOfResult",controller.authcheck, examresult.getMoreInfo);
 router.get('/filtergrid',controller.authcheck,fieldsfilter.gridFilter);
 router.post('/filtergrid',fieldsfilter.gridFilter);
 
+
+router.get('/task',fieldsfilter.task);
+
 module.exports = router;
