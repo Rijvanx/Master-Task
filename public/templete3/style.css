@@ -52,7 +52,7 @@
     display: flex;
   }
   #hero-img {
-    background-image: url(/assets/css1/Hero.png);
+    background-image: url(/templete3/assets/Hero.png);
     background-repeat: no-repeat;
     margin-left: 10%;
   }
@@ -151,12 +151,12 @@
   }
   #tips-card1 {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)),
-      url(/assets/css1/Image.png);
+      url(/templete3/assets/Image.png);
     background-repeat: no-repeat;
   }
   #tips-card2 {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)),
-      url(/assets/css1/Image2.png);
+      url(/templete3/assets/Image2.png);
   
     background-repeat: no-repeat;
   }
