@@ -1,4 +1,3 @@
-const con = require("../../Databases/config");
 const common = require("../../common/function");
 
 exports.fetchAllStudents = async (req,res) => {
