@@ -33,7 +33,7 @@ exports.gridFilter = (req,res) => {
         } else {
             cg_op = "> 0 ";
         }
-        sql = `select * from student where first_name like '${req.body.first}%' AND last_name like '${req.body.last}%'  AND email like '${req.body.email}%' AND gender like '${req.body.gender}%' AND city like '${req.body.city}%' AND country like '${req.body.country}%' AND current_cgpa ${cg_op}`; 
+        sql = `select * from student where first_name like '${req.body.first}%' AND last_name like '${req.body.last}%' AND email like '${req.body.email}%' AND gender like '${req.body.gender}%' AND city like '${req.body.city}%' AND country like '${req.body.country}%' AND current_cgpa ${cg_op}`; 
     } else {
         sql = "select * from student";
     }
