@@ -316,6 +316,7 @@ function Fillinputs(obj,keys,arr){
 } 
 function SelectInput(str){
     const option = document.querySelector(`${str}`);
+    console.log(option);
     option.selected = true;
 }
 
@@ -334,19 +335,13 @@ function fetch_all_data(id){
             Fillinputs(data.basic_details[0],keys,basic_ids);
 
             document.getElementById("emp_id").value = data.basic_details[0].id;
-            // select state
-            SelectInput(`#state option[value="${data.basic_details[0].state}"]`);
 
+            // select state
+            console.log(data.basic_details[0].state);
+            SelectInput(`#state option[value="${data.basic_details[0].state}"]`);
 
             fetch_data("city");
 
-            // {
-            // //  *** pending select city 
-            // // const cityOption = document.querySelectorAll(`#city option`)
-            // // console.log(cityOption);
-            // // cityOption.selected = true;
-            // }
-            // select relationship_status
             SelectInput(`#relationship_status option[value="${data.basic_details[0].relationship_status}"]`)
             
             // checked gender
@@ -525,6 +520,7 @@ function fetch_all_data(id){
             const pkeys = Object.keys(data.preferances_details[0]);
             Fillinputs(data.preferances_details[0],pkeys,preferances);
             // ================ end ==================//
+
 
             document.getElementById('insert-btn').style.display="none";
             const up_btn = document.getElementById('update-btn');

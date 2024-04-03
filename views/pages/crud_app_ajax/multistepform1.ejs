@@ -132,15 +132,15 @@
               </tr>
               <tr>
                   <td>Name Of board : </td>
-                  <td><input type="text" name="university[]" id="ssc_board">
+                  <td><input type="text" name="university[]" id="ssc_board" required>
                       <br><span id="error_ssc_board"></span>
                   </td>
                   <td>Passing Year :</td>
-                  <td><input type="text" name="year[]" id="ssc_year">
+                  <td><input type="text" name="year[]" id="ssc_year" required>
                       <br><span id="error_ssc_year"></span>
                   </td>
                   <td>Percentage :</td>
-                  <td><input type="number" name="percentage[]" id="ssc_percentage">
+                  <td><input type="number" name="percentage[]" id="ssc_percentage" required>
                       <br><span id="error_ssc_percentage"></span>
                   </td>
                   <td> <input type="hidden" name="course[]" value="ssc"> </td>
@@ -158,16 +158,16 @@
               </tr>
               <tr>
                   <td>Name Of board : </td>
-                  <td><input type="text" name="university[]" id="hsc_board">
+                  <td><input type="text" name="university[]" id="hsc_board" required>
                       <br><span id="error_hsc_board"></span>
                   </td>
                   <td>Passing Year :</td>
-                  <td><input type="number" name="year[]" id="hsc_year">
+                  <td><input type="number" name="year[]" id="hsc_year" required>
                       <br><span id="error_hsc_year"></span>
                   </td>
 
                   <td>Percentage :</td>
-                  <td><input type="number" name="percentage[]" id="hsc_percentage">
+                  <td><input type="number" name="percentage[]" id="hsc_percentage" required>
                       <br><span id="error_hsc_percentage"></span>
                   </td>
                   <td><input type="hidden" name="course[]" value="hsc/diploma">  </td>
@@ -185,15 +185,15 @@
               </tr>
               <tr>
                   <td>Course Name: </td>
-                  <td><input type="text" name="course[]" id="course_name">
+                  <td><input type="text" name="course[]" id="course_name" required>
                       <br><span id="error_course_name"></span>
                   </td>
                   <td>University :</td>
-                  <td><input type="text" name="university[]" id="university">
+                  <td><input type="text" name="university[]" id="university" required>
                       <br><span id="error_university"></span>
                   </td>
                   <td>Passing Year :</td>
-                  <td><input type="number" name="year[]" id="bachelor_year">
+                  <td><input type="number" name="year[]" id="bachelor_year" required>
                       <br><span id="error_bachelor_year"></span>
                   </td>
                   <td>Percentage :</td>
@@ -423,7 +423,7 @@
             </table>
           </div>
 
-          <p id="insert-btn"  onclick="insert('form-data')">submit p</p>
+          <p id="insert-btn"  onclick="insert('form-data')">submit</p>
           <div class="alert alert-success" role="alert" id="alert">
             updated
           </div>

@@ -107,3 +107,13 @@ span[id^=error_]{
 #alert{
     display: none;
 }
+
+#insert-btn{
+    background: #3c9546;
+  padding: 9px 18px;
+  display: inline;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bolder;
+}

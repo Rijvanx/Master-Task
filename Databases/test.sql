@@ -95,7 +95,7 @@ CREATE TABLE `basic_details` (
   `relationship_status` varchar(45) DEFAULT NULL,
   `dob` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `basic_details` (
 
 LOCK TABLES `basic_details` WRITE;
 /*!40000 ALTER TABLE `basic_details` DISABLE KEYS */;
-INSERT INTO `basic_details` VALUES (1,'rijvans','juneja','Software developer','rijvan.juneja@esparkbizmail.com','TALAJ','BHAVNAGAR','9586404030','up','bhavnagar','365214','male','Married','2024-05-04'),(12,'rijvan','juneja','Software developer','rijvan.juneja@esparkbizmail.com','sdfgsdg','dsgsd','1234567894','gujarat','ahemdabad','365214','male','Single','2024-03-20'),(13,'rijvan','juneja','Software developer','rijvan.juneja@esparkbizmail.com','sdfgsdg','dsgsd','1234567894','gujarat','ahemdabad','365214','male','Single','2024-03-20'),(14,'etwet','sdas','safas','asfas@gsd.vgrf','asfsa','asfas','1234567891','gujarat','bhavnagar','234234','male','Single','2024-03-15');
+INSERT INTO `basic_details` VALUES (1,'rijvanx','juneja','Software developer','rijvan.juneja@esparkbizmail.com','bhavnagar','talaja','8545854584','2','38','123456','male','Single','2002-05-13');
 /*!40000 ALTER TABLE `basic_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +149,7 @@ CREATE TABLE `education_details` (
   `passing_year` varchar(45) DEFAULT NULL,
   `percentage` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +158,7 @@ CREATE TABLE `education_details` (
 
 LOCK TABLES `education_details` WRITE;
 /*!40000 ALTER TABLE `education_details` DISABLE KEYS */;
-INSERT INTO `education_details` VALUES (1,1,'ssc','GSEB','2018','97'),(2,1,'hsc/diploma','gtu','545','12'),(3,1,'ASFAS','GSEB','4','45'),(4,13,'ssc','dsf','1234','85'),(5,13,'hsc/diploma','sdfSDf','1234','45'),(6,13,'sdef','sdfsdf','123','145'),(7,13,'sdfs','sdfew','465','12'),(8,14,'ssc','cccc','234','23'),(9,14,'hsc/diploma','cccc','323','33'),(10,14,'cc','ccc','3223','234'),(11,14,'cccccc','cccccc','2342','23');
+INSERT INTO `education_details` VALUES (1,1,'ssc','GSEB','2018','97'),(2,1,'hsc/diploma','gtu','545','12'),(3,1,'ASFAS','GSEB','4','45'),(4,13,'ssc','dsf','1234','85'),(5,13,'hsc/diploma','sdfSDf','1234','45'),(6,13,'sdef','sdfsdf','123','145'),(7,13,'sdfs','sdfew','465','12'),(8,14,'ssc','cccc','234','23'),(9,14,'hsc/diploma','cccc','323','33'),(10,14,'cc','ccc','3223','234'),(11,14,'cccccc','cccccc','2342','23'),(12,15,'ssc','sd','54','45'),(13,15,'hsc/diploma','adfgs','1234','54'),(14,15,'ASFAS','adfgs','45','55'),(15,17,'ssc','sf','df','54'),(23,19,'ssc','adfgs','1234','45'),(24,19,'hsc/diploma','GSEB','4515','45'),(25,1,'ssc','GSEB','2018','85'),(26,1,'hsc/diploma','GSEB','2019','25'),(27,1,'B.E','gtu','2031','58');
 /*!40000 ALTER TABLE `education_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +200,7 @@ CREATE TABLE `language_know` (
   `lan_name` varchar(45) DEFAULT NULL,
   `lag_level` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,7 @@ CREATE TABLE `language_know` (
 
 LOCK TABLES `language_know` WRITE;
 /*!40000 ALTER TABLE `language_know` DISABLE KEYS */;
-INSERT INTO `language_know` VALUES (1,1,'hindi','read'),(2,1,'english','read'),(3,1,'english','Write'),(4,1,'gujarati','Write'),(5,12,'hindi','Write'),(6,12,'english','Write'),(7,12,'gujarati','Speak'),(8,13,'hindi','Write'),(9,13,'english','Write'),(10,13,'gujarati','Speak'),(11,14,'hindi','read'),(12,14,'english','read'),(13,14,'gujarati','read');
+INSERT INTO `language_know` VALUES (1,1,'hindi','read'),(2,1,'english','read'),(3,1,'english','Write'),(4,1,'gujarati','Write'),(5,12,'hindi','Write'),(6,12,'english','Write'),(7,12,'gujarati','Speak'),(8,13,'hindi','Write'),(9,13,'english','Write'),(10,13,'gujarati','Speak'),(11,14,'hindi','read'),(12,14,'english','read'),(13,14,'gujarati','read'),(14,15,'hindi','read'),(15,1,'hindi','read'),(16,1,'hindi','Write'),(17,1,'english','Write'),(18,1,'english','Speak'),(19,1,'gujarati','read');
 /*!40000 ALTER TABLE `language_know` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +253,7 @@ CREATE TABLE `preferances` (
   `current_ctc` varchar(45) DEFAULT NULL,
   `department` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,7 +262,7 @@ CREATE TABLE `preferances` (
 
 LOCK TABLES `preferances` WRITE;
 /*!40000 ALTER TABLE `preferances` DISABLE KEYS */;
-INSERT INTO `preferances` VALUES (1,1,'Ahemdabad','DSF','45465','654','Development'),(12,12,'Ahemdabad','12','1234','45475','Development'),(13,13,'Ahemdabad','12','1234','45475','Development'),(14,14,'Ahemdabad','32','23424','234242','Development');
+INSERT INTO `preferances` VALUES (1,1,'Ahemdabad','DSF','45465','654','Development'),(12,12,'Ahemdabad','12','1234','45475','Development'),(13,13,'Ahemdabad','12','1234','45475','Development'),(14,14,'Ahemdabad','32','23424','234242','Development'),(15,15,'Ahemdabad','458','454','565678','Development'),(16,16,'','','','',''),(17,17,'','','','',''),(18,18,'','','','',''),(21,19,'','','','',''),(22,1,'Bhavnagar','12','0','0','Development');
 /*!40000 ALTER TABLE `preferances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,7 +280,7 @@ CREATE TABLE `referance_contact` (
   `contact_number` varchar(45) DEFAULT NULL,
   `relation` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -289,7 +289,7 @@ CREATE TABLE `referance_contact` (
 
 LOCK TABLES `referance_contact` WRITE;
 /*!40000 ALTER TABLE `referance_contact` DISABLE KEYS */;
-INSERT INTO `referance_contact` VALUES (1,1,'WEDR','654','SDEF'),(2,12,'sdfsd','5675867412','Friend'),(3,13,'sdfsd','5675867412','Friend'),(4,14,'cccccc','3443333333','cccc'),(5,14,'cccc','3333333333','ccccc');
+INSERT INTO `referance_contact` VALUES (1,1,'WEDR','654','SDEF'),(2,12,'sdfsd','5675867412','Friend'),(3,13,'sdfsd','5675867412','Friend'),(4,14,'cccccc','3443333333','cccc'),(5,14,'cccc','3333333333','ccccc'),(6,15,'jeel patel','4564564564','Friend'),(7,1,'jeel patel','1234567891','Friend'),(8,1,'shivam patel','1234568543','Friend');
 /*!40000 ALTER TABLE `referance_contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -513,7 +513,7 @@ CREATE TABLE `technologies_know` (
   `tech_name` varchar(45) DEFAULT NULL,
   `tech_level` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -522,7 +522,7 @@ CREATE TABLE `technologies_know` (
 
 LOCK TABLES `technologies_know` WRITE;
 /*!40000 ALTER TABLE `technologies_know` DISABLE KEYS */;
-INSERT INTO `technologies_know` VALUES (1,1,'php','mideator'),(2,1,'laravel','expert'),(3,12,'php','expert'),(4,12,'laravel','mideator'),(5,12,'oracle','expert'),(6,13,'php','expert'),(7,13,'laravel','mideator'),(8,13,'oracle','expert'),(9,14,'php','beginer'),(10,14,'mysql','beginer'),(11,14,'laravel','beginer'),(12,14,'oracle','beginer');
+INSERT INTO `technologies_know` VALUES (1,1,'php','mideator'),(2,1,'laravel','expert'),(3,12,'php','expert'),(4,12,'laravel','mideator'),(5,12,'oracle','expert'),(6,13,'php','expert'),(7,13,'laravel','mideator'),(8,13,'oracle','expert'),(9,14,'php','beginer'),(10,14,'mysql','beginer'),(11,14,'laravel','beginer'),(12,14,'oracle','beginer'),(13,15,'php','beginer'),(14,1,'php','mideator'),(15,1,'mysql','expert'),(16,1,'oracle','mideator');
 /*!40000 ALTER TABLE `technologies_know` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -571,7 +571,7 @@ CREATE TABLE `work_exp` (
   `fromdate` date DEFAULT NULL,
   `to_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -580,7 +580,7 @@ CREATE TABLE `work_exp` (
 
 LOCK TABLES `work_exp` WRITE;
 /*!40000 ALTER TABLE `work_exp` DISABLE KEYS */;
-INSERT INTO `work_exp` VALUES (1,1,'FSWE','WEF','2024-03-05','2024-03-20'),(2,3,'r','gh',NULL,NULL),(3,3,'i','fgh',NULL,NULL),(4,3,'j','fgh',NULL,NULL),(5,3,'v',NULL,NULL,NULL),(6,4,'r','gh',NULL,NULL),(7,4,'i','fgh',NULL,NULL),(8,4,'j','fgh',NULL,NULL),(9,4,'v',NULL,NULL,NULL),(10,5,'DDTHH',NULL,NULL,NULL),(11,7,'sdfa',NULL,NULL,NULL),(12,12,'edsf','assistant professor','2024-03-04','2024-03-06'),(13,13,'edsf','assistant professor','2024-03-04','2024-03-06'),(14,14,'ccccc','cccc','2024-03-01','2024-03-18'),(15,14,'cccc','cccc','2024-03-05','2024-03-12');
+INSERT INTO `work_exp` VALUES (1,1,'FSWE','WEF','2024-03-05','2024-03-20'),(2,3,'r','gh',NULL,NULL),(3,3,'i','fgh',NULL,NULL),(4,3,'j','fgh',NULL,NULL),(5,3,'v',NULL,NULL,NULL),(6,4,'r','gh',NULL,NULL),(7,4,'i','fgh',NULL,NULL),(8,4,'j','fgh',NULL,NULL),(9,4,'v',NULL,NULL,NULL),(10,5,'DDTHH',NULL,NULL,NULL),(11,7,'sdfa',NULL,NULL,NULL),(12,12,'edsf','assistant professor','2024-03-04','2024-03-06'),(13,13,'edsf','assistant professor','2024-03-04','2024-03-06'),(14,14,'ccccc','cccc','2024-03-01','2024-03-18'),(15,14,'cccc','cccc','2024-03-05','2024-03-12'),(16,15,'sdas','assistant professor','2024-04-16','2024-04-10'),(17,1,'eSpakbiz','Jr.Software Developer','2024-04-03','2024-04-04'),(18,1,'gmiu','assistant professor','2024-04-21','2024-04-30');
 /*!40000 ALTER TABLE `work_exp` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -593,4 +593,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-03 11:42:34
+-- Dump completed on 2024-04-03 18:09:44

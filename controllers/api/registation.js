@@ -207,9 +207,9 @@ exports.login = async (req, res) => {
                     
                     const key = process.env.SECRET_KEY;
                     const token = jwt.sign(check_password[0], key,{
-                        expiresIn: '5m'
+                        expiresIn: '20m'
                     });
-                    res.cookie('token', token,{maxAge : 5*60*1000});
+                    res.cookie('token', token,{maxAge : 20*60*1000});
                     response = {
                         status: 200,
                         msg: "success",
