@@ -25,12 +25,15 @@ exports.gridFilter = (req,res) => {
     } else if(req.body.first || req.body.last || req.body.email || req.body.gender || req.body.city || req.body.country || req.body.cgpa){
         filterdata = {"id" : null , ...req.body}
         var cg_op;
+        console.log(req.body.cgpa);
         if(req.body.cgpa == 0){
             cg_op = "< 5 ";
-        } else {
+        } if(req.body.cgpa == 1){
             cg_op = "> 5 ";
+        } else {
+            cg_op = "> 0 ";
         }
-        sql = `select * from student where first_name like '${req.body.first}%' AND last_name like '${req.body.last}%' AND email like '${req.body.email}%' AND gender like '${req.body.gender}%' AND city like '%${req.body.city}%' AND country like '${req.body.country}%' AND current_cgpa ${cg_op}`; 
+        sql = `select * from student where first_name like '${req.body.first}%' AND last_name like '${req.body.last}%'  AND email like '${req.body.email}%' AND gender like '${req.body.gender}%' AND city like '${req.body.city}%' AND country like '${req.body.country}%' AND current_cgpa ${cg_op}`; 
     } else {
         sql = "select * from student";
     }
@@ -46,6 +49,7 @@ exports.gridFilter = (req,res) => {
         pagenum = 1;
     }             
     var n = pagenum - 1;
+    console.log(sql);
     con.query(sql, async (err, rows) => {
         if (!err) {
             totalRecords = rows.length;
@@ -84,7 +88,8 @@ exports.gridFilter = (req,res) => {
             res.render("pages/allfieldFilter/task04march", {
                 sql : sql,
                 datashow : false,
-                err : err
+                err : err,
+                filterdata : filterdata
             });
         }
     })
