@@ -1,21 +1,8 @@
 const con = require("../../Databases/config");
-
-function RunQuery(query, params) {
-    return new Promise((resolve, reject) => {
-        con.query(query, params, (err, results) => {
-  
-          if (err) {  
-            return reject(err);
-          }
-  
-          return resolve(results);
-        });
-    });
-}
-
+const common = require("../../common/function");
 
 exports.fetchAllStudents = async (req,res) => {
     const query = "select id,first_name,designation,mobile_number,gender,dob from basic_details";
-    const data = await RunQuery(query,[])
+    const data = await common.RunQuery(query,[])
     res.send(data);
 }

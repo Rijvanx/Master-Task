@@ -2,11 +2,8 @@
                                                   All POST Reqvests
 ****************************************************************************************************************** */
 
-const con = require("../../Databases/config");
-const common = require("../common/function");
+const common = require("../../common/function");
 const jwt = require('jsonwebtoken');
-
-
 require('dotenv').config();
 
 exports.InsertRegistation = async (req, res) => {

@@ -1,22 +1,8 @@
-const con = require("../../Databases/config");
+const common = require("../../common/function");
 
 const validation = (obj) => {
     return { status: "success" };   
 }
-
-function RunQuery(query, params) {
-    return new Promise((resolve, reject) => {
-        con.query(query, params, (err, results) => {
-  
-          if (err) {  
-            return reject(err);
-          }
-  
-          return resolve(results);
-        });
-    });
-}
-
 
 exports.insertBasicData = async (req, res) => {
     
@@ -42,8 +28,9 @@ exports.insertBasicData = async (req, res) => {
                     relationship_status: (req.body.relationship_status) ? req.body.relationship_status : '',
                     dob: (req.body.dob) ? req.body.dob : '',
                 }
+
                 const basic_detail = "INSERT INTO basic_details(first_name, last_name, designation, email, address1, address2, mobile_number, state, city, zip_code, gender, relationship_status, dob) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-                const data = await RunQuery(basic_detail, [obj.first_name, obj.last_name, obj.designation, obj.email, obj.address1, obj.address2, obj.mobile_number, obj.state, obj.city, obj.zip_code, obj.gender, obj.relationship_status, obj.dob]); 
+                const data = await common.RunQuery(basic_detail, [obj.first_name, obj.last_name, obj.designation, obj.email, obj.address1, obj.address2, obj.mobile_number, obj.state, obj.city, obj.zip_code, obj.gender, obj.relationship_status, obj.dob]); 
 
                 // basic Detail Inserted Id
                 const inserted_id = data.insertId; 
@@ -59,7 +46,7 @@ exports.insertBasicData = async (req, res) => {
                 const edu_query = "INSERT INTO education_details (emp_id, course, university, passing_year, percentage) VALUES (?, ?, ?, ?, ?)";
                 if (edu_obj.university.length != 0) {
                     for (let i = 0; i < edu_obj.university.length; i++) {
-                    let edu = await RunQuery(edu_query, [inserted_id, edu_obj.course[i], edu_obj.university[i], edu_obj.year[i], edu_obj.percentage[i]]);
+                    let edu = await common.RunQuery(edu_query, [inserted_id, edu_obj.course[i], edu_obj.university[i], edu_obj.year[i], edu_obj.percentage[i]]);
                     }
                 }
 
@@ -73,7 +60,7 @@ exports.insertBasicData = async (req, res) => {
                 let work_exp_query = "INSERT INTO work_exp (emp_id, company_name, designation, fromdate, to_date) VALUES (?, ?, ?, ?, ?)";
                 if (exp_obj.company_name.length != 0) {
                     for (let i = 0; i < exp_obj.company_name.length; i++) {
-                        let ex = await RunQuery(work_exp_query,[inserted_id, exp_obj.company_name[i], exp_obj.designationc[i], exp_obj.fromdate[i], exp_obj.todate[i]])
+                        let ex = await common.RunQuery(work_exp_query,[inserted_id, exp_obj.company_name[i], exp_obj.designationc[i], exp_obj.fromdate[i], exp_obj.todate[i]])
                     }
                 }
 
@@ -88,7 +75,7 @@ exports.insertBasicData = async (req, res) => {
                 language_obj.language.forEach(element => {
                     let level = eval(`language_obj.${element}_level`);
                     level.forEach(async (el) => {
-                        let lang = await RunQuery(lang_know_query,[inserted_id, element, el]);
+                        let lang = await common.RunQuery(lang_know_query,[inserted_id, element, el]);
                     });
                 });
 
@@ -103,7 +90,7 @@ exports.insertBasicData = async (req, res) => {
                 let tech_know_query = "INSERT INTO technologies_know (emp_id, tech_name, tech_level) VALUES (?, ?, ?)";
                 technologies_obj.technologies.forEach(async (element) => {
                     let level = eval(`technologies_obj.${element}_level`);
-                    let tech = await RunQuery(tech_know_query,[inserted_id, element, level]);
+                    let tech = await common.RunQuery(tech_know_query,[inserted_id, element, level]);
                 });
                 
                 //  ======== referance_contact table insert ==========//
@@ -115,7 +102,7 @@ exports.insertBasicData = async (req, res) => {
                 let referance_contact_query = "INSERT INTO referance_contact (emp_id, name, contact_number, relation) VALUES (?, ?, ?, ?)";
                 if (referance_contact_obj.referance_name.length != 0) {
                     for (let i = 0; i < referance_contact_obj.referance_name.length; i++) {
-                        let ref = await RunQuery(referance_contact_query,[inserted_id, referance_contact_obj.referance_name[i], referance_contact_obj.referance_contact_number[i], referance_contact_obj.referance_relation[i]]);
+                        let ref = await common.RunQuery(referance_contact_query,[inserted_id, referance_contact_obj.referance_name[i], referance_contact_obj.referance_contact_number[i], referance_contact_obj.referance_relation[i]]);
                     }
                 }
 
@@ -127,8 +114,9 @@ exports.insertBasicData = async (req, res) => {
                     expacted_ctc: (req.body.expacted_ctc) ? req.body.expacted_ctc : '',
                     current_ctc: (req.body.current_ctc) ? req.body.current_ctc : ''
                 }
+                
                 let preferances_query = "INSERT INTO preferances (emp_id, preferd_location, notice_period, expacted_ctc, current_ctc,department) VALUES (?,?,?,?,?,?)";
-                let pre = await RunQuery(preferances_query,[inserted_id, preferances_contact_obj.preferd_location, preferances_contact_obj.notice_period, preferances_contact_obj.expacted_ctc, preferances_contact_obj.current_ctc, preferances_contact_obj.department])
+                let pre = await common.RunQuery(preferances_query,[inserted_id, preferances_contact_obj.preferd_location, preferances_contact_obj.notice_period, preferances_contact_obj.expacted_ctc, preferances_contact_obj.current_ctc, preferances_contact_obj.department])
                 
                 // Response Send
                 res.send([{

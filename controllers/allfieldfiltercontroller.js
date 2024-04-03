@@ -2,6 +2,7 @@ const con = require("../Databases/config");
 
 var numPerRecord = 10;
 var totalRecords;
+
 exports.gridFilter = (req,res) => {
     var filterdata = {};
     // console.log(req.body);
@@ -34,6 +35,7 @@ exports.gridFilter = (req,res) => {
         sql = "select * from student";
     }
 
+    // url decode
     sql = sql.replace(/%20/g, ' ');
     sql = sql.replace(/%27/g, "'");
     sql = sql.replace(/%3E/g, '>');
@@ -44,7 +46,7 @@ exports.gridFilter = (req,res) => {
         pagenum = 1;
     }             
     var n = pagenum - 1;
-    con.query(sql, (err, rows) => {
+    con.query(sql, async (err, rows) => {
         if (!err) {
             totalRecords = rows.length;
             let start = numPerRecord * n;
@@ -68,6 +70,7 @@ exports.gridFilter = (req,res) => {
                     console.log("error in fetch data sql2",err2)
                     }
                 })
+
             } else {
                 res.render("pages/allfieldFilter/task04march", {
                     sql : sql,
@@ -90,16 +93,7 @@ exports.gridFilter = (req,res) => {
 
 exports.task = (req,res) =>{
     var sql;
-    // if(req.query.squery) {                                             //else check query pass on url get method 
-    //     checkquery = req.query.squery.toString().toLowerCase();
-    // } else {
-    //     res.render("pages/task01march", {                                            // query not in url or body then sent enter a query
-    //         sql : checkquery,
-    //         datashow : false,
-    //         err : "Please Enter query"
-    //     });
-    // }
-
+ 
     var orderby,order;
 
     if(req.query.orderby){

@@ -1,4 +1,4 @@
-const con = require("../../Databases/config");
+const con = require("../Databases/config");
 const md5 = require('md5');
 
 function RunQuery(query, params) {

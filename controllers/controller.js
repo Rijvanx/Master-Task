@@ -4,7 +4,7 @@
 *********************************************************************************************************************/ 
 
 const jwt = require('jsonwebtoken');
-const common = require("../controllers/common/function");
+const common = require("../common/function");
 
 require("dotenv").config();
 
