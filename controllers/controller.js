@@ -1,11 +1,9 @@
 
 /* *****************************************************************************************************************
-                                                  All Get Reqvests
+                                                  All Get Requests
 *********************************************************************************************************************/ 
 
 const jwt = require('jsonwebtoken');
-
-const con = require("../Databases/config");
 const common = require("../controllers/common/function");
 
 require("dotenv").config();

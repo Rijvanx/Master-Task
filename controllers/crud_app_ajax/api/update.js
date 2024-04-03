@@ -1,4 +1,4 @@
-const con = require("../../../../Databases/config");
+const con = require("../../../Databases/config");
 
 
 exports.updateAllData = (req,res) =>{

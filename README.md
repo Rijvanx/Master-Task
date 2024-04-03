@@ -7,7 +7,7 @@ This project provides an authentication and authorization system using JWT token
 Project Configuration
 Step 1: Database Setup
 
-    Navigate to the Databases/DbSchema folder.
+    Navigate to the Databases/test.sql.
     Retrieve the necessary tables and create a database named test.
 
 Step 2: Configure Database Connection

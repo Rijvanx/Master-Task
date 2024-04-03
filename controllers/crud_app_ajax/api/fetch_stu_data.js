@@ -1,6 +1,4 @@
-const { query } = require("express");
-const con = require("../../../../Databases/config");
-
+const con = require("../../../Databases/config");
 
 function RunQuery(query, params) {
     return new Promise((resolve, reject) => {

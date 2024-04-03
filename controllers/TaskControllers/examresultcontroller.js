@@ -2,13 +2,19 @@ const con = require('../../Databases/config');
 require('dotenv').config();
 var NO_OF_RECORDS_PER_PAGE = 10;
 var CURRENT_PAGE = 1;
+let count;
 
+con.query('select count(*) as c from student_master', function (err, result) {
+    if (err) throw err;
+
+    count = result[0].c;
+});
 
 exports.getResult = (req, res) => {
-
-
+    
+    // console.log(count, "CALLEDS");
     CURRENT_PAGE = Number(req.query.page_no) || 1;
-    var pageEnd = Math.ceil(200 / NO_OF_RECORDS_PER_PAGE);
+    var pageEnd = Math.ceil(count / NO_OF_RECORDS_PER_PAGE);
     let offset_value = (CURRENT_PAGE * NO_OF_RECORDS_PER_PAGE) - NO_OF_RECORDS_PER_PAGE;
 
 
@@ -42,7 +48,7 @@ exports.getMoreInfo = (req, res) => {
     sum(case when e.type_id = 1 then e.practical_obtain_marks else 0 end) as prelim_practical_marks, 
     max(case when e.type_id = 1 then e.theory_total_marks else 0 end) as prelim_theory_total_marks, 
     sum(case when e.type_id = 1 then e.theory_obtain_marks else 0 end) as prelim_theory_marks, 
-    
+
     max(case when e.type_id = 2 then e.practical_total_marks else 0 end) as terminal_practical_total_marks,  
     sum(case when e.type_id = 2 then e.practical_obtain_marks else 0 end) as terminal_practical_marks, 
     max(case when e.type_id = 2 then e.theory_total_marks else 0 end) as terminal_theory_total_marks, 

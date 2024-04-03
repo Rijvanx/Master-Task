@@ -1,4 +1,4 @@
-const con = require("../../../../Databases/config");
+const con = require("../../../Databases/config");
 
 const validation = (obj) => {
     return { status: "success" };   

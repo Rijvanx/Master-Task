@@ -1,25 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const controller = require('./controllers/controller');
-const registation = require('./controllers/api/registation');
-const controllergrid =  require('./controllers/TaskControllers/gridcontroller');
-const controllerdelimiter =  require('./controllers/TaskControllers/delimitercontroller');
-const jsonplaccontro = require('./controllers/TaskControllers/jsonplaccontro');
-const crudappcontroller = require('./controllers/TaskControllers/crudappcontroller');
-const crudajax = require('./controllers/TaskControllers/crud_app_ajax/controller');
-const insert = require('./controllers/TaskControllers/crud_app_ajax/api/insert');
-const fetch_stu_data = require('./controllers/TaskControllers/crud_app_ajax/api/fetch_stu_data');
-const fetch_single_data = require('./controllers/TaskControllers/crud_app_ajax/api/fetch_single_data');
-const update = require('./controllers/TaskControllers/crud_app_ajax/api/update');
-const examresult = require('./controllers/TaskControllers/examresultcontroller');
-const fieldsfilter = require('./controllers/TaskControllers/allfieldfiltercontroller');
+const controller = require('../controllers/controller');
+const registation = require('../controllers/api/registation');
+const controllergrid =  require('../controllers/TaskControllers/gridcontroller');
+const controllerdelimiter =  require('../controllers/TaskControllers/delimitercontroller');
+const jsonplaccontro = require('../controllers/TaskControllers/jsonplaccontro');
+const crudappcontroller = require('../controllers/TaskControllers/crudappcontroller');
+const crudajax = require('../controllers/crud_app_ajax/controller');
+const insert = require('../controllers/crud_app_ajax/api/insert');
+const fetch_stu_data = require('../controllers/crud_app_ajax/api/fetch_stu_data');
+const fetch_single_data = require('../controllers/crud_app_ajax/api/fetch_single_data');
+const update = require('../controllers/crud_app_ajax/api/update');
+const examresult = require('../controllers/TaskControllers/examresultcontroller');
+const fieldsfilter = require('../controllers/TaskControllers/allfieldfiltercontroller');
 
-
-
-// const passport = require("passport");
-// const initializingPassport = require("./controllers/passportConfig");
-
-// initializingPassport.initializingPassport(passport);
 
 router.get('/', controller.index);
 router.get('/registation', controller.registation);
@@ -117,7 +111,7 @@ router.post('/task/api/update',crudappcontroller.update);
 
 router.get('/stepform',controller.authcheck, crudajax.multistepfrom);
 
-// // =========== API'S ==========// 
+// =========== API'S ==========// 
 router.get('/api/getstate',controller.authcheck, crudajax.getstate);
 router.get('/api/city', controller.authcheck,crudajax.getcity);
 router.get('/students',controller.authcheck, crudajax.students);
