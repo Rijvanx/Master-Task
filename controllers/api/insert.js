@@ -1,4 +1,4 @@
-const con = require("../../../Databases/config");
+const con = require("../../Databases/config");
 
 const validation = (obj) => {
     return { status: "success" };   
@@ -21,7 +21,6 @@ function RunQuery(query, params) {
 exports.insertBasicData = async (req, res) => {
     
     if (req.method == "POST") {
-        console.log("post Data",req.body);
         
         const run = validation("obj");
   
@@ -146,7 +145,6 @@ exports.insertBasicData = async (req, res) => {
                 }]);
             }
         } else {
-            // console.log(run.status);
             res.send([{
                 status : 400,
                 err : "data not valid",

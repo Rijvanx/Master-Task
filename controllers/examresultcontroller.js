@@ -1,4 +1,4 @@
-const con = require('../../Databases/config');
+const con = require('../Databases/config');
 require('dotenv').config();
 var NO_OF_RECORDS_PER_PAGE = 10;
 var CURRENT_PAGE = 1;

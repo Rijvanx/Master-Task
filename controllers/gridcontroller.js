@@ -1,7 +1,7 @@
 var numPerRecord = 10;
 var totalRecords;
 
-const con = require("../../Databases/config");
+const con = require("../Databases/config");
 
 exports.grid = (req,res) =>{
     var checkquery;

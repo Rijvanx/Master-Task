@@ -161,13 +161,10 @@ exports.createNewPassword = async (req, res) => {
     if (req.body.id) {
 
         const stu_id = req.body.id;
-        // console.log(stu_id);
         try {
             // update(insert) password & active user in  user table 
             const salt_query = "SELECT salt FROM user where stu_id= ?";
             const salt_result = await common.RunQuery(salt_query, [stu_id]);
-
-            // console.log(salt_result[0].salt);
 
             const password = common.encryptstr(req.body.create_password + salt_result[0].salt);
 
@@ -197,7 +194,6 @@ exports.createNewPassword = async (req, res) => {
 
 exports.login = async (req, res) => {
     var response;
-    // console.log(req.body);
     if (req.body.email && req.body.password) {
 
         try {
@@ -213,7 +209,6 @@ exports.login = async (req, res) => {
                 if (check_password.length > 0) {
                     
                     const key = process.env.SECRET_KEY;
-                    // console.log(key);
                     const token = jwt.sign(check_password[0], key,{
                         expiresIn: '5m'
                     });
@@ -257,7 +252,7 @@ exports.checklogin = async (req ,res) =>{
     var response;
     if(req.cookies.token){
         const token = req.cookies.token;
-        // console.log(userCookie);
+        
         try{
             const key = process.env.SECRET_KEY;
             let decoded = jwt.verify(token, key);

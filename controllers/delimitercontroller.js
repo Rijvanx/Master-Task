@@ -1,5 +1,5 @@
 // const { log } = require("console");
-const con = require("../../Databases/config");
+const con = require("../Databases/config");
 
 const finddel = (str,i,dell) =>{
         let nextdell = 0;

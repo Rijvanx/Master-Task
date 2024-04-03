@@ -2,17 +2,17 @@ const express = require("express");
 const router = express.Router();
 const controller = require('../controllers/controller');
 const registation = require('../controllers/api/registation');
-const controllergrid =  require('../controllers/TaskControllers/gridcontroller');
-const controllerdelimiter =  require('../controllers/TaskControllers/delimitercontroller');
-const jsonplaccontro = require('../controllers/TaskControllers/jsonplaccontro');
-const crudappcontroller = require('../controllers/TaskControllers/crudappcontroller');
-const crudajax = require('../controllers/crud_app_ajax/controller');
-const insert = require('../controllers/crud_app_ajax/api/insert');
-const fetch_stu_data = require('../controllers/crud_app_ajax/api/fetch_stu_data');
-const fetch_single_data = require('../controllers/crud_app_ajax/api/fetch_single_data');
-const update = require('../controllers/crud_app_ajax/api/update');
-const examresult = require('../controllers/TaskControllers/examresultcontroller');
-const fieldsfilter = require('../controllers/TaskControllers/allfieldfiltercontroller');
+const controllergrid =  require('../controllers/gridcontroller');
+const controllerdelimiter =  require('../controllers/delimitercontroller');
+const jsonplaccontro = require('../controllers/jsonplaccontro');
+const crudappcontroller = require('../controllers/crudappcontroller');
+const crudajax = require('../controllers/crudajaxcontroller');
+const insert = require('../controllers/api/insert');
+const fetch_stu_data = require('../controllers/api/fetch_stu_data');
+const fetch_single_data = require('../controllers/api/fetch_single_data');
+const update = require('../controllers/api/update');
+const examresult = require('../controllers/examresultcontroller');
+const fieldsfilter = require('../controllers/allfieldfiltercontroller');
 
 
 router.get('/', controller.index);

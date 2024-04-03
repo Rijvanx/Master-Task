@@ -1,5 +1,5 @@
 const { log } = require("console");
-const con = require("../../Databases/config");
+const con = require("../Databases/config");
 const e = require("express");
 
 exports.index = (req, res) => {

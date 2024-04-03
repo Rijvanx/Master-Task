@@ -1,8 +1,7 @@
-const con = require("../../../Databases/config");
+const con = require("../../Databases/config");
 
 
 exports.updateAllData = (req,res) =>{
-    console.log("req",req.body);
     if(req.body.emp_id){
         const obj = {
             // basic details
