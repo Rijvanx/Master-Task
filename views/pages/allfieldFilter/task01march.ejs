@@ -50,16 +50,19 @@
                     June
                   <% } else if(month == 07) {%>
                     July
-                    <% } %>
+                  <% } else { %>
+                      All 
+                  <% } %>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 01 %>">January</a></li>
-                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 02 %>">February</a></li>
-                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 03 %>">March</a></li>
-                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 04 %>">April</a></li>
-                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 05 %>">May</a></li>
-                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 06 %>">June</a></li>
-                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=<%= 07 %>">July</a></li> 
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=all">All</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=01">January</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=02">February</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=03">March</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=04">April</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=05">May</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=06">June</a></li>
+                  <li><a class="dropdown-item" href="/task?n=1&orderby=<%= orderby %>&order=<%= order %>&year=<%= year %>&month=07">July</a></li> 
                 </ul>
               </div>
 

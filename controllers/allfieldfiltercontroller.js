@@ -97,9 +97,9 @@ exports.gridFilter = (req,res) => {
 }
 
 exports.task = (req,res) =>{
-    var sql;
+    let sql;
  
-    var orderby,order;
+    let orderby,order;
 
     if(req.query.orderby){
         orderby = req.query.orderby;
@@ -113,7 +113,7 @@ exports.task = (req,res) =>{
         order = "ASC";
     }
 
-    var year,month,last_date;;
+    let year,month,last_date;;
     if(req.query.year){
         year = req.query.year;
     } else {
@@ -131,16 +131,19 @@ exports.task = (req,res) =>{
     } else {
         last_date = "28";
     }
-    var d = new Date(2008, month, 0);
-    console.log(d.toString()); //
-    
-    sql = `select * from student WHERE (dob BETWEEN '${year}-${month}-01' AND '${year}-${month}-${last_date}')`;
+    let d = new Date(2008, month, 0);
+    // console.log(d.toString()); //
+    if(req.query.month == 'all'){
+        sql = `select * from student`;
+    }else {
+        sql = `select * from student WHERE (dob BETWEEN '${year}-${month}-01' AND '${year}-${month}-${last_date}')`;
+    }
         
         let pagenum = req.query.n;
         if (!req.query.n || req.query.n < 1) {
             pagenum = 1;
         }             
-        var n = pagenum - 1;
+        let n = pagenum - 1;
         con.query(sql, (err, rows) => {
             if (!err) {
                 totalRecords = rows.length;
