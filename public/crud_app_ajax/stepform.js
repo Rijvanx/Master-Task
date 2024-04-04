@@ -642,6 +642,7 @@ function fetch_all_data(id){
             // ================ Preferances ==================//
             
             SelectInput(`#preferd-location option[value="${data.preferances_details[0].preferd_location}"]`);
+            console.log(data.preferances_details[0]);
             SelectInput(`#department option[value="${data.preferances_details[0].department}"]`);
 
             let preferances= ['notice_period','expacted_ctc','current_ctc']
