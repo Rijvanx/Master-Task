@@ -68,7 +68,7 @@ function RemoveRef() {
 }
 
 function validateForm() {
-    const requiredFields = ['first_name', 'last_name', 'designation', 'address1', 'email', 'mobile_number', 'relationship_status', 'zip_code', 'dob', 'state', 'city', 'ssc_board', 'ssc_year', 'ssc_percentage', 'hsc_board', 'hsc_year', 'hsc_percentage', 'course_name', 'university', 'bachelor_year', 'bachelor_percentage', 'preferd-location', 'department', 'expacted_ctc', 'current_ctc'];
+    const requiredFields = ['first_name', 'last_name', 'designation', 'address1', 'email', 'mobile_number', 'relationship_status', 'zip_code', 'dob', 'state', 'city', 'ssc_board', 'ssc_year', 'ssc_percentage', 'hsc_board', 'hsc_year', 'hsc_percentage', 'course_name', 'university', 'bachelor_year', 'bachelor_percentage' ,'preferd-location', 'department', 'expacted_ctc', 'current_ctc'];
     const onlyLetters = ['first_name', 'last_name', 'designation', 'ssc_board', 'hsc_board', 'course_name', 'university'];
     const onlyNumber = ['mobile_number', 'zip_code', 'ssc_year', 'ssc_percentage', 'hsc_year', 'hsc_percentage', 'bachelor_year', 'bachelor_percentage', 'expacted_ctc', 'current_ctc'];
 

@@ -213,13 +213,21 @@
               </tr>
               <tr>
                   <td>Course Name: </td>
-                  <td><input type="text" name="course[]" id="master_course"></td>
+                  <td><input type="text" name="course[]" id="master_course">
+                        <br><span id="error_master_course"></span>
+                  </td>
                   <td>University :</td>
-                  <td><input type="text" name="university[]" id="master_university"></td>
+                  <td><input type="text" name="university[]" id="master_university">
+                        <br><span id="error_master_university"></span>
+                  </td>
                   <td>Passing Year :</td>
-                  <td><input type="number" name="year[]" id="master_year"></td>
+                  <td><input type="number" name="year[]" id="master_year">
+                        <br><span id="error_master_year"></span>
+                  </td>
                   <td>Percentage :</td>
-                  <td><input type="number" name="percentage[]" id="master_percentage"></td>
+                  <td><input type="number" name="percentage[]" id="master_percentage">
+                        <br><span id="error_master_percentage"></span>
+                  </td>
               </tr>
             </table>
         </div>
@@ -379,7 +387,7 @@
               <tr>
                   <td>Preferd Location :</td>
                   <td>
-                      <select name="preferd_location" id="preferd-location" required>
+                      <select name="preferd_location" id="preferd-location">
                           <option value="">select option</option>
                           <option value="Ahemdabad">Ahemdabad</option>
                           <option value="Bhavnagar">Bhavnagar</option>
@@ -388,10 +396,12 @@
                       <br> <span id="error_preferd-location"></span>
                   </td>
                   <td>Notice period :</td>
-                  <td><input type="text" name="notice_period" id="notice_period" required></td>
+                  <td><input type="text" name="notice_period" id="notice_period">
+                    <br> <span id="error_notice_period"></span>
+                </td>
                   <td>Department : </td>
                   <td>
-                      <select name="department" id="department" required>
+                      <select name="department" id="department">
                           <option value="">select option</option>
                           <option value="Development">Development</option>
                           <option value="Design">Design</option>
@@ -404,7 +414,7 @@
                   <td></td>
                   <td></td>
                   <td>Expacted CTC :</td>
-                  <td><input type="number" name="expacted_ctc" id="expacted_ctc" required>
+                  <td><input type="number" name="expacted_ctc" id="expacted_ctc">
                   <br><span id="error_expacted_ctc"></span></td>
                   <td></td>
                   <td></td>

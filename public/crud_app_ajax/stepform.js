@@ -32,11 +32,20 @@ function changeStep(id){
 
 const nextBtn = document.getElementById("nextBtn");
 nextBtn.addEventListener('click',function (){
-    if(basic_validation()){
+    
         const activebox = document.querySelector(".active-circle-box");
-        const id =Number(activebox.innerHTML) + 1;
-        changeStep(id);
-    }
+        if(basic_validation() && activebox.innerHTML == 1){
+            const id =Number(activebox.innerHTML) + 1;
+            changeStep(id);
+            console.log(id);
+        }else if(education_validation() && activebox.innerHTML == 2 ){
+            const id =Number(activebox.innerHTML) + 1;
+            changeStep(id);
+            console.log(id);
+        } else if(activebox.innerHTML == 3 && work_experience_validation()){
+            const id =Number(activebox.innerHTML) + 1;
+            changeStep(id);
+        }
 })
 
 const preBtn = document.getElementById("preBtn");
@@ -230,6 +239,122 @@ function basic_validation(){
 
 }
 
+
+function education_validation(){
+    const requiredFields = ['ssc_board','ssc_year','ssc_percentage','hsc_board','hsc_year','hsc_percentage','course_name','university','bachelor_year','bachelor_percentage','master_course','master_university','master_year','master_percentage'];
+    const onlyLetters = ['ssc_board','hsc_board','course_name','university','master_course','master_university'];
+    const onlyNumber = ['ssc_year','ssc_percentage','hsc_year','hsc_percentage','bachelor_year','bachelor_percentage','master_year','master_percentage'];
+    const merge1 = merge(requiredFields, onlyLetters);
+    const mergearr = merge(merge1, onlyNumber);
+
+    for (const field of mergearr) {
+        const tag = document.getElementById(field);
+        const value = tag.value.trim();
+        const errorSpan = document.getElementById(`error_${field}`);
+
+        if (requiredFields.includes(field) && value == '') {
+            errorSpan.textContent = `Please fill in the ${field.replace('_', ' ')}`;
+        } else if (onlyLetters.includes(field) && !(value.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))) {
+            errorSpan.textContent = 'Please Enter only letters';                            // check only alphabets
+        } else if (onlyNumber.includes(field) && !(value.match(/^[0-9]+$/))) {
+            errorSpan.textContent = 'Please Enter only number';                            // check only number
+        } else {
+            errorSpan.textContent = '';
+        }
+    }
+
+    for (const field of mergearr) {
+        const errorSpan = document.getElementById(`error_${field}`);
+        if (errorSpan.textContent != '') {
+            return false;
+        }
+    }
+    return true;
+}
+
+function work_experience_validation(){
+    let requiredFields = [];
+    let onlyLetters = [];
+    let onlyNumber = [];
+    
+
+    // add exp for requered store to requiredFields array
+    let exp_names = document.querySelectorAll('[id^="company_name"]');
+    // console.log(exp_names);
+    for (let r = 0; r < exp_names.length; r++) {
+        if (exp_names[r].value != "") {
+            requiredFields.push(`designation${r + 1}`, `fromdate${r + 1}`, `todate${r + 1}`, `company_name${r + 1}`);
+            onlyLetters.push(`designation${r + 1}`);
+        }
+    }
+
+    let merge1 = merge(requiredFields, onlyLetters);
+    let mergearr = merge(merge1, onlyNumber);
+    for (const field of mergearr) {
+        const tag = document.getElementById(field);
+        const value = tag.value.trim();
+        const errorSpan = document.getElementById(`error_${field}`);
+
+        if (requiredFields.includes(field) && value == '') {
+            errorSpan.textContent = `Please fill in the ${field.replace('_', ' ')}`;
+        } else if (onlyLetters.includes(field) && !(value.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))) {
+            errorSpan.textContent = 'Please Enter only letters';                            // check only alphabets
+        } else if (onlyNumber.includes(field) && !(value.match(/^[0-9]+$/))) {
+            errorSpan.textContent = 'Please Enter only number';                            // check only number
+        } else {
+            errorSpan.textContent = '';
+        }
+    }
+
+    for (const field of mergearr) {
+        const errorSpan = document.getElementById(`error_${field}`);
+        if (errorSpan.textContent != '') {
+            return false;
+        }
+    }
+    return true;
+}
+
+function referance_preferances_validation(){
+    let requiredFields = ['preferd-location','notice_period','department','expacted_ctc','current_ctc'];
+    let onlyLetters = [];
+    let onlyNumber = [];
+    
+    let ref_names = document.querySelectorAll('[id^="ref_name_"]');
+    for (let r = 0; r < ref_names.length; r++) {
+        if (ref_names[r].value != "") {
+            requiredFields.push(`ref_contact_${r + 1}`, `ref_relation_${r + 1}`);
+            onlyNumber.push(`ref_contact_${r + 1}`); 
+            onlyLetters.push(`ref_relation_${r + 1}`);
+        }
+    }
+
+    let merge1 = merge(requiredFields, onlyLetters);
+    let mergearr = merge(merge1, onlyNumber);
+    for (const field of mergearr) {
+        const tag = document.getElementById(field);
+        const value = tag.value.trim();
+        const errorSpan = document.getElementById(`error_${field}`);
+
+        if (requiredFields.includes(field) && value == '') {
+            errorSpan.textContent = `Please fill in the ${field.replace('_', ' ')}`;
+        } else if (onlyLetters.includes(field) && !(value.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))) {
+            errorSpan.textContent = 'Please Enter only letters';                            // check only alphabets
+        } else if (onlyNumber.includes(field) && !(value.match(/^[0-9]+$/))) {
+            errorSpan.textContent = 'Please Enter only number';                            // check only number
+        } else {
+            errorSpan.textContent = '';
+        }
+    }
+
+    for (const field of mergearr) {
+        const errorSpan = document.getElementById(`error_${field}`);
+        if (errorSpan.textContent != '') {
+            return false;
+        }
+    }
+    return true;
+}
 // ====== end ========/
 
 
@@ -279,30 +404,33 @@ function basic_validation(){
 fetch_data("state");
 
 function insert(form_id) {
-    let formData = new FormData(document.querySelector(`#${form_id}`));
-    const xhr = new XMLHttpRequest();
-    xhr.open("post", "/api/insertBasicData");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-   
-    const Data = new URLSearchParams(formData);
-    console.log(Data);
-   
-    xhr.onload = () => {
-        if (xhr.status == 200) {
-            const alert_box = document.getElementById("alert");
-            alert_box.style.display = "block";
-            alert_box.innerHTML = "Data Inserted Successfully";
-            document.getElementById("insert-btn").style.display = 'none';
-
-            // console.log(xhr.responseText);
-            if(xhr.responseText[0].status == 201){
-                console.log(xhr.responseText);
+    if(referance_preferances_validation()){
+        let formData = new FormData(document.querySelector(`#${form_id}`));
+        const xhr = new XMLHttpRequest();
+        xhr.open("post", "/api/insertBasicData");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+       
+        const Data = new URLSearchParams(formData);
+        console.log(Data);
+       
+        xhr.onload = () => {
+            if (xhr.status == 200) {
+                const alert_box = document.getElementById("alert");
+                alert_box.style.display = "block";
+                alert_box.innerHTML = "Data Inserted Successfully";
+                document.getElementById("insert-btn").style.display = 'none';
+    
+                // console.log(xhr.responseText);
+                if(xhr.responseText[0].status == 201){
+                    console.log(xhr.responseText);
+                }
+            } else {
+                console.log(`Error: ${xhr.status}`);
             }
-        } else {
-            console.log(`Error: ${xhr.status}`);
-        }
-    };
-    xhr.send(Data);
+        };
+        xhr.send(Data);
+    }
+    
 
 }
 
@@ -543,25 +671,27 @@ if(urlParams.has('id')){
 
 // send data for update
 function updateData(form_id){
-    let formData = new FormData(document.querySelector(`#${form_id}`));
-    const xhr = new XMLHttpRequest();
-    xhr.open("post", "/api/updateAllData");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-   
-    const Data = new URLSearchParams(formData);
-    console.log(Data);
-   
-    xhr.onload = () => {
-        if (xhr.status == 200) {
-            console.log("hello");
-            const alert_box = document.getElementById("alert");
-            alert_box.style.display = "block";
-            alert_box.innerHTML = "Data Update Successfully";
-
-            document.getElementById("update-btn").style.display = 'none';
-        } else {
-            console.log(`Error: ${xhr}`);
-        }
-    };
-    xhr.send(Data);
+    if(referance_preferances_validation()){
+        let formData = new FormData(document.querySelector(`#${form_id}`));
+        const xhr = new XMLHttpRequest();
+        xhr.open("post", "/api/updateAllData");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+       
+        const Data = new URLSearchParams(formData);
+        console.log(Data);
+       
+        xhr.onload = () => {
+            if (xhr.status == 200) {
+                console.log("hello");
+                const alert_box = document.getElementById("alert");
+                alert_box.style.display = "block";
+                alert_box.innerHTML = "Data Update Successfully";
+    
+                document.getElementById("update-btn").style.display = 'none';
+            } else {
+                console.log(`Error: ${xhr}`);
+            }
+        };
+        xhr.send(Data);
+    }
 }
