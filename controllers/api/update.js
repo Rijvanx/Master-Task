@@ -110,11 +110,9 @@ exports.updateAllData = async (req,res) =>{
             await RunQuery(del5,[obj.id]);
 
             if (obj.referance_name.length != 0) {
-                for (let i = 0; i < obj.referance_name.length; i++) {
-                    let referance_contact = "INSERT INTO referance_contact (emp_id, name, contact_number, relation) VALUES (?, ?, ?, ?)";
-                    con.query(referance_contact, [obj.id, obj.referance_name[i], obj.referance_contact_number[i], obj.referance_relation[i]], (err3, rows3) => {
-                        if (err3) console.log(err3);
-                    });
+                let referance_contact = "INSERT INTO referance_contact (emp_id, name, contact_number, relation) VALUES (?, ?, ?, ?)";
+                for (let i = 0; i < obj.referance_name.length; i++) { 
+                    await RunQuery(referance_contact,[obj.id, obj.referance_name[i], obj.referance_contact_number[i], obj.referance_relation[i]]);
                 }
             }
 
