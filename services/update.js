@@ -1,5 +1,5 @@
-const con = require("../../Databases/config");
-const { RunQuery } = require('../../common/function');
+const con = require("../Databases/config");
+const { RunQuery } = require('../common/function');
 
 exports.updateAllData = async (req,res) =>{
     if(req.body.emp_id){

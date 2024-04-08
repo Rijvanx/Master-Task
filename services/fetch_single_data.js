@@ -1,5 +1,5 @@
 
-const common = require( "../../common/function");
+const common = require( "../common/function");
 
 exports.fetch_single_data = async (req,res) =>{
     const id = req.query.id || "0";

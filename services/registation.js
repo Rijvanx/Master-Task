@@ -2,7 +2,7 @@
                                                   All POST Reqvests
 ****************************************************************************************************************** */
 
-const common = require("../../common/function");
+const common = require("../common/function");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 

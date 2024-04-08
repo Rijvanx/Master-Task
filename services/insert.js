@@ -1,4 +1,4 @@
-const common = require("../../common/function");
+const common = require("../common/function");
 
 const validation = (obj) => {
     return { status: "success" };   
