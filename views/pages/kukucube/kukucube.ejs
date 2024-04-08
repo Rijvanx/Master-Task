@@ -84,7 +84,7 @@
                 <div class="header">
                     <h2 class="score">Score :<span> 0</span></h2>
                     <h2 class="timer">Timer :<span> 10</span></h2>
-                    <div class="btn-pause btn">Pause</div>
+                    <h2 class="highscore">High Score :<span> 0</span></h2>
                 </div>
             </section>
             <table id="table">
@@ -139,18 +139,20 @@
         var tr = document.createElement('tr');
         const num_td = document.querySelector('#first_tr').childElementCount;
         // //console.log(num_td);
+        if(num_td <9 ){
+            for (let i = 0; i < num_td; i++) {
+                let td = document.createElement('td');
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
 
-        for (let i = 0; i < num_td; i++) {
-            let td = document.createElement('td');
-            tr.appendChild(td);
+            const trs = document.querySelectorAll("tr");
+            trs.forEach(element => {
+                let td = document.createElement('td');
+                element.appendChild(td);
+            });
         }
-        table.appendChild(tr);
-
-        const trs = document.querySelectorAll("tr");
-        trs.forEach(element => {
-            let td = document.createElement('td');
-            element.appendChild(td);
-        });
+        
         removeEvent();
         RandomBox();
     }
@@ -222,6 +224,9 @@
                 // //console.log(timer);
                 timetag.innerHTML = timer;
             } else {
+                if(localStorage.getItem("highscore") < score){
+                    localStorage.setItem("highscore", score);
+                }
                 clearInterval(gameInterval);
                 alert("Game Over! Your score: " + score);
                 window.location.reload();
@@ -229,6 +234,9 @@
         }, 1000);
     });
 
+    if(localStorage.getItem("highscore")){
+        document.querySelector(".highscore span").innerHTML = localStorage.getItem("highscore");
+    }
 
 
 </script>
